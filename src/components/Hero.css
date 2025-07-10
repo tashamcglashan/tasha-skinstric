@@ -1,0 +1,114 @@
+/* --- Main Hero Section Layout --- */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 2rem;
+    background-color: #ffffff;
+  }
+  
+  .hero__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    transition: transform 0.5s ease;
+    position: relative;
+  }
+  
+  .hero__left,
+  .hero__right {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero__center {
+    width: 60%;
+    text-align: center;
+  }
+  
+  /* Slide animation for center title */
+  .hero.hover-left .hero__top {
+    transform: translateX(30pvw); /* dramatic shift */
+  }
+  
+  .hero.hover-right .hero__top {
+    transform: translateX(-30vw);
+  }
+  
+  /* --- Typography --- */
+  .hero__title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 128px;
+    font-weight: 300;
+    line-height: 120px;
+    letter-spacing: -9px;
+    color: #111;
+    margin: 0;
+  }
+  
+  .hero__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0 10px;
+  }
+  
+  /* --- Hover Box Container --- */
+  .hover-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* --- Diamond Box --- */
+  .diamond {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    transform: rotate(45deg);
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  /* Content inside diamond rotates back */
+  .arrow-wrapper {
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Arrow icon */
+  .arrow {
+    font-size: 12px;
+    color: #000;
+    transition: margin 0.3s ease;
+  }
+  
+  /* Animate arrow only when diamond is hovered */
+  .diamond:hover .arrow.left {
+    margin-left: -3px;
+  }
+  
+  .diamond:hover .arrow.right {
+    margin-right: -3px;
+  }
+  
+  /* --- Bottom Paragraph --- */
+  .hero__bottom {
+    margin-top: 2rem;
+    max-width: 400px;
+    font-size: 0.8rem;
+    text-align: left;
+    align-self: flex-start;
+  }
+  
