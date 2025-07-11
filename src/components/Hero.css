@@ -1,45 +1,70 @@
 /* === Hero Section Layout === */
 .hero {
-    height: 100vh;
-    background-color: #fff;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
   }
   
   /* This entire row will slide left or right */
   .hero__top {
-    display: flex;
+    position: relative;
     width: 100vw;
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-    position: relative;
   }
   
+/* === FADE OUT right side ONLY when hovering over left === */
+.hero.hover-left .hero__right,
+.hero.hover-left .diamond-border-right {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+/* === FADE OUT left side ONLY when hovering over right === */
+.hero.hover-right .hero__left,
+.hero.hover-right .diamond-border-left {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
   /* Apply movement to entire row */
-  .hero.hover-left .hero__top {
-    transform: translateX(30vw);
+  .hero.hover-left .hero__center {
+    transform: translate(30vw, -50%);
   }
   
-  .hero.hover-right .hero__top {
-    transform: translateX(-30vw);
-  }
+  .hero.hover-right .hero__center {
+    transform: translate(-80vw, -50%);
+  } 
   
   /* Section width and alignment */
   .hero__left,
   .hero__right {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.6s ease;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
   }
   
   .hero__center {
-    width: 60%;
-    text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.8s ease-in-out;
+  z-index: 3;
+  text-align: center;
   }
   
   /* Typography */
@@ -107,9 +132,11 @@
   
   /* Bottom text */
   .hero__bottom {
-    margin-top: 2rem;
-    max-width: 400px;
-    font-size: 0.8rem;
+    position: absolute;
+  bottom: 3rem; /* or any value like 5rem, 10vh, etc. */
+  left: 2rem;
+  font-size: 0.8rem;
+  max-width: 400px;
     text-align: left;
     align-self: flex-start;
   }
