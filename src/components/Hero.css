@@ -1,23 +1,34 @@
-/* --- Main Hero Section Layout --- */
+/* === Hero Section Layout === */
 .hero {
+    height: 100vh;
+    background-color: #fff;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
     padding: 2rem;
-    background-color: #ffffff;
   }
   
+  /* This entire row will slide left or right */
   .hero__top {
     display: flex;
-    justify-content: space-between;
+    width: 100vw;
     align-items: center;
-    width: 100%;
-    transition: transform 0.5s ease;
+    justify-content: space-between;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
     position: relative;
   }
   
+  /* Apply movement to entire row */
+  .hero.hover-left .hero__top {
+    transform: translateX(30vw);
+  }
+  
+  .hero.hover-right .hero__top {
+    transform: translateX(-30vw);
+  }
+  
+  /* Section width and alignment */
   .hero__left,
   .hero__right {
     width: 20%;
@@ -31,16 +42,7 @@
     text-align: center;
   }
   
-  /* Slide animation for center title */
-  .hero.hover-left .hero__top {
-    transform: translateX(30pvw); /* dramatic shift */
-  }
-  
-  .hero.hover-right .hero__top {
-    transform: translateX(-30vw);
-  }
-  
-  /* --- Typography --- */
+  /* Typography */
   .hero__title {
     font-family: 'Poppins', sans-serif;
     font-size: 128px;
@@ -51,6 +53,7 @@
     margin: 0;
   }
   
+  /* Label under diamond */
   .hero__label {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -58,14 +61,16 @@
     margin: 0 10px;
   }
   
-  /* --- Hover Box Container --- */
+  /* Label and icon wrapper */
   .hover-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: transform 0.3s ease;
+    cursor: pointer;
   }
   
-  /* --- Diamond Box --- */
+  /* Diamond shape */
   .diamond {
     width: 32px;
     height: 32px;
@@ -75,26 +80,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    overflow: hidden;
   }
+
   
-  /* Content inside diamond rotates back */
-  .arrow-wrapper {
-    transform: rotate(-45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Arrow icon */
+  /* Arrow inside diamond */
   .arrow {
     font-size: 12px;
     color: #000;
+    transform: rotate(-45deg); /* rotates arrow back to upright */
     transition: margin 0.3s ease;
   }
+
+  .flipped {
+    transform: rotate(145deg);
+  }
   
-  /* Animate arrow only when diamond is hovered */
+  
+  /* Hover effect on diamond (moves arrow only) */
   .diamond:hover .arrow.left {
     margin-left: -3px;
   }
@@ -103,7 +105,7 @@
     margin-right: -3px;
   }
   
-  /* --- Bottom Paragraph --- */
+  /* Bottom text */
   .hero__bottom {
     margin-top: 2rem;
     max-width: 400px;
@@ -111,4 +113,29 @@
     text-align: left;
     align-self: flex-start;
   }
+  
+/* Diamond border */
+.diamond-border {
+    position: absolute;
+    width: 602px;
+    height: 602px;
+    border: 1px dotted #A0A4AB;
+    border-style: dotted;
+    transform: rotate(45deg);
+    opacity: 1;
+    pointer-events: none; /* prevents mouse hover interference */
+    z-index: 0;
+    
+  }
+  
+  .diamond-border-left {
+    top: 179px;
+    left: -301px; /* exactly half width offscreen */
+  }
+  
+  .diamond-border-right {
+    top: 179px;
+    left: calc(100% - 301px); /* aligns right side to edge */
+  }
+  
   

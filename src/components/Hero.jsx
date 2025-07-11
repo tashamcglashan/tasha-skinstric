@@ -7,6 +7,12 @@ export default function Hero() {
 
   return (
     <section className={`hero ${hoverDirection}`}>
+      {/* Left Large Diamond Border */}
+      <div className="diamond-border diamond-border-left"></div>
+
+      {/* Right Large Diamond Border */}
+      <div className="diamond-border diamond-border-right"></div>
+
       <div className="hero__top">
         {/* Left Section */}
         <div
@@ -15,13 +21,13 @@ export default function Hero() {
           onMouseLeave={() => setHoverDirection(null)}
         >
           <div className="hover-container">
-          <div className="diamond">
-            <div className="arrow-wrapper">
-              <FaPlay className="arrow left" />
+            <div className="diamond">
+              <div className="arrow-wrapper">
+                <FaPlay className="arrow left flipped" />
+              </div>
             </div>
+            <p className="hero__label">Discover A.I.</p>
           </div>
-          <p className="hero__label">Discover A.I.</p>
-        </div>
         </div>
 
         {/* Center Section */}
@@ -37,16 +43,16 @@ export default function Hero() {
           onMouseEnter={() => setHoverDirection('hover-right')}
           onMouseLeave={() => setHoverDirection(null)}
         >
-            <div className="hover-container">
-          <p className="hero__label">Take Test</p>
-          <div className="diamond">
-            <div className="arrow-wrapper">
-              <FaPlay className="arrow right" />
+          <div className="hover-container">
+            <p className="hero__label">Take Test</p>
+            <div className="diamond">
+              <div className="arrow-wrapper">
+                <FaPlay className="arrow right" />
+              </div>
             </div>
           </div>
         </div>
       </div>
-        </div>
 
       {/* Bottom Paragraph */}
       <div className="hero__bottom">
