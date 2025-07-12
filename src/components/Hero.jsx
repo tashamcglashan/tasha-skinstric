@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Hero.css';
 import { FaPlay } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+
 
 export default function Hero() {
   const [hoverDirection, setHoverDirection] = useState(null);
@@ -43,6 +45,7 @@ export default function Hero() {
           onMouseEnter={() => setHoverDirection('hover-right')}
           onMouseLeave={() => setHoverDirection(null)}
         >
+          <Link to="/start-analysis" className="hero__link">
           <div className="hover-container">
             <p className="hero__label">Take Test</p>
             <div className="diamond">
@@ -51,7 +54,9 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </div>
+        
+        </Link>
+      </div>
       </div>
 
       {/* Bottom Paragraph */}

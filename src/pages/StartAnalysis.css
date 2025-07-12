@@ -1,0 +1,178 @@
+/* Layout wrapper */
+.start-analysis-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+  }
+  
+  /* "TO START ANALYSIS" under navbar */
+  .analysis-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-left: 30px;
+    margin-top: 80px;
+    z-index: 2;
+    position: relative;
+    text-align: left;
+  }
+  
+  /* Main content */
+  .center-content {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+  }
+  
+  /* Input hint text */
+  .click-hint {
+    font-size: 12px;
+    color: #9999b1;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  /* Input field and text replacement */
+  .form-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #4d4d4d;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #4d4d4d;
+    padding-bottom: 6px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .form-title:focus {
+    outline: none;
+  }
+  
+  /* Rotating diamonds (now renamed) */
+  .analysis-animated-diamonds {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .analysis-diamond {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px dotted #aaa;
+    top: 0;
+    left: 0;
+    animation: rotate 20s linear infinite;
+    transform-origin: center;
+    opacity: 0.3;
+  }
+  
+  .analysis-diamond:nth-child(2) {
+    animation-delay: 2s;
+  }
+  .analysis-diamond:nth-child(3) {
+    animation-delay: 4s;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Loading dots */
+  .loading-text {
+    font-size: 16px;
+    color: #4d4d4d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .dot {
+    animation: blink 1.2s infinite;
+    opacity: 0.4;
+  }
+  
+  .dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  
+  /* Final message */
+  .thank-you-text {
+    font-size: 20px;
+    color: #4d4d4d;
+    margin-top: 25px;
+  }
+  
+  /* Buttons */
+  .back-button,
+  .proceed-button {
+    position: fixed;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #111;
+    cursor: pointer;
+    z-index: 3;
+    text-decoration: none;
+    background: none;
+    border: none;
+  }
+  
+  .back-button {
+    left: 30px;
+  }
+  
+  .proceed-button {
+    right: 30px;
+    flex-direction: row-reverse;
+  }
+  
+  /* Diamond box */
+  .icon-box {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #111;
+    transform: rotate(45deg);
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .icon-box i,
+  .icon-box svg {
+    transform: rotate(-45deg);
+  }
+  
