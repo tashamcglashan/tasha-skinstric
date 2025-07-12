@@ -1,62 +1,54 @@
 /* Result.css */
 
-/* Base layout for the page */
 .result-page {
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: #fff;
-  overflow: hidden;
-  box-sizing: border-box;
+  background-color: white;
+  font-family: sans-serif;
 }
 
-/* "TO START ANALYSIS" text */
+/* Header */
 .result-header {
   position: absolute;
   top: 86px;
   left: 32px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  color: #1A2A38;
+  color: #1b2b40;
 }
 
-/* Preview label and box (top-right) */
+/* Preview Box */
 .result-preview {
   position: absolute;
   top: 86px;
-  right: 100px;
+  right: 32px;
   text-align: center;
-  color: #1A2A38;
-}
-
-.result-preview p {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 6px;
+  color: #1b2b40;
 }
 
 .result-preview-box {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   border: 1px solid #ccc;
-  background-color: white;
+  margin-top: 8px;
 }
 
-/* Container for camera + gallery icons */
+/* Centered Option Layout */
 .result-center-content {
-  position: absolute;
+  /*position: absolute;*/
   top: 240px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   display: flex;
-  gap: 120px;
-  z-index: 1;
+  justify-content: center;
+  gap: 140px;
 }
 
-/* Each option (camera or gallery) */
+/* Each Option */
 .result-option {
-  width: 250px;
-  height: 300px;
+  width: 488px;
+  height: 482px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -64,16 +56,50 @@
   justify-content: center;
 }
 
-/* Wrapper for rotating diamond and icon */
+/* Diamond animation wrapper */
 .result-diamond-wrapper {
   position: relative;
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
 }
 
-/* Dotted diamond border */
 .result-diamond {
   width: 100%;
   height: 100%;
-  border: 2p
+  border: 2px dotted #ccc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(10deg);
+  animation: spin 12s linear infinite;
+  z-index: 0;
+}
+
+/* Icon Styling */
+.result-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 56px;
+  color: #0e1d2f;
+  z-index: 1;
+}
+
+/* Label text */
+.result-label {
+  margin-top: 20px;
+  font-weight: 500;
+  color: #1a2a38;
+  line-height: 1.5;
+}
+
+/* Rotation animation */
+@keyframes spin {
+  0% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(370deg);
+  }
 }

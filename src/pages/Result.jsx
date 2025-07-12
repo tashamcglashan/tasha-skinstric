@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRegImages } from "react-icons/fa";
-import { BsCamera } from "react-icons/bs";
+import { MdOutlineCameraAlt } from "react-icons/md";
 import Navbar from "../components/Nav";
 import "./Result.css";
 
@@ -35,7 +35,7 @@ export default function Result() {
           <div className="result-option scan-face">
             <div className="result-diamond-wrapper">
               <div className="result-diamond"></div>
-              <BsCamera className="result-icon" />
+              <MdOutlineCameraAlt className="result-icon" />
             </div>
             <p className="result-label">
               ALLOW A.I. <br /> TO SCAN YOUR FACE
@@ -43,7 +43,10 @@ export default function Result() {
           </div>
 
           {/* Right Option - Access Gallery */}
-          <div className="result-option access-gallery" onClick={handleGalleryClick}>
+          <div
+            className="result-option access-gallery"
+            onClick={handleGalleryClick}
+          >
             <div className="result-diamond-wrapper">
               <div className="result-diamond"></div>
               <FaRegImages className="result-icon" />
