@@ -1,105 +1,200 @@
-/* Result.css */
-
 .result-page {
   position: relative;
-  width: 100%;
   height: 100vh;
-  background-color: white;
+  width: 100%;
+  background-color: #fff;
   font-family: sans-serif;
 }
 
-/* Header */
 .result-header {
   position: absolute;
-  top: 86px;
-  left: 32px;
-  font-size: 20px;
+  top: 60px;
+  left: 60px;
+  font-size: 18px;
   font-weight: bold;
-  color: #1b2b40;
+  color: #1a1a1a;
 }
 
-/* Preview Box */
-.result-preview {
-  position: absolute;
-  top: 86px;
-  right: 32px;
-  text-align: center;
-  color: #1b2b40;
-}
-
-.result-preview-box {
-  width: 130px;
-  height: 130px;
-  border: 1px solid #ccc;
-  margin-top: 8px;
-}
-
-/* Centered Option Layout */
+/* CENTER OPTIONS CONTAINER */
 .result-center-content {
-  /*position: absolute;*/
-  top: 240px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 140px;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-/* Each Option */
-.result-option {
-  width: 488px;
+/* LEFT: CAMERA OPTION */
+.scan-face {
+  position: absolute;
+  top: 240px;
+  left: 239px;
+  width: 520px;
   height: 482px;
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* Diamond animation wrapper */
+/* RIGHT: GALLERY OPTION */
+.access-gallery {
+  position: absolute;
+  top: 240px;
+  left: 1193px;
+  width: 488px;
+  height: 482px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICONS + ROTATING DIAMOND */
 .result-diamond-wrapper {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* center horizontally */
 }
+
 
 .result-diamond {
-  width: 100%;
-  height: 100%;
-  border: 2px dotted #ccc;
   position: absolute;
-  top: 0;
-  left: 0;
-  transform: rotate(10deg);
-  animation: spin 12s linear infinite;
-  z-index: 0;
+  bottom:10%;
+  left: 10%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transform-origin: center;
+  border: 2px dashed #000;
+  cursor: pointer;
+  animation: spin 16s linear infinite;
 }
 
-/* Icon Styling */
-.result-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 56px;
-  color: #0e1d2f;
-  z-index: 1;
+
+/* Rectangle 1 - smallest, most solid */
+.diamond-1 {
+  width: 140px;
+  height: 140px;
+  opacity: 1;
+  
+}
+/* Rectangle 2 - medium, semi transparent */
+.diamond-2 {
+  width: 160px;
+  height: 160px;
+  opacity: 0.6;
+  
 }
 
-/* Label text */
+/* Rectangle 3 - largest, faint */
+.diamond-3 {
+  width: 180px;
+  height: 180px;
+  opacity: 0.3;
+}
+
+/* LABELS UNDER ICONS */
 .result-label {
   margin-top: 20px;
+  font-size: 14px;
   font-weight: 500;
-  color: #1a2a38;
-  line-height: 1.5;
+  line-height: 1.4;
+  text-align: center;
 }
 
-/* Rotation animation */
+.back-button-container {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  cursor: pointer;
+}
+
+.back-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+}
+
+.back-diamond {
+  width: 16px;
+  height: 16px;
+  border: 2px solid black;
+  transform: rotate(45deg);
+}
+
+/* Preview section */
+.result-preview {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  text-align: right;
+}
+
+.preview-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.preview-box {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.camera-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camera-popup-content {
+  background-color: #000;
+  color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+  width: 280px;
+}
+
+.popup-line {
+  height: 1px;
+  background-color: white;
+  margin: 16px 0;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.popup-actions button {
+  background: none;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+
+
 @keyframes spin {
   0% {
-    transform: rotate(10deg);
+    transform: rotate(45deg);
   }
   100% {
-    transform: rotate(370deg);
+    transform: rotate(405deg);
   }
 }

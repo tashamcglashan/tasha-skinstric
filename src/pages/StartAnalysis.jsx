@@ -108,6 +108,8 @@ export default function StartAnalysis() {
           {step === 4 && (
             <div className="thank-you-text">
               Thank you!
+              <br />
+              Proceed to the next step!
             </div>
           )}
 
