@@ -1,9 +1,11 @@
 .result-page {
   position: relative;
+  width: 100vw;
   height: 100vh;
-  width: 100%;
-  background-color: #fff;
-  font-family: sans-serif;
+  background-color: white;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 60px;
 }
 
 .result-header {
@@ -13,13 +15,29 @@
   font-size: 18px;
   font-weight: bold;
   color: #1a1a1a;
+  white-space: nowrap;
 }
 
 /* CENTER OPTIONS CONTAINER */
 .result-center-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap; /* ✅ Important for mobile! */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+.result-option {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 /* LEFT: CAMERA OPTION */
@@ -56,7 +74,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto; /* center horizontally */
+  margin-bottom: 12px;
+  
 }
 
 
@@ -68,7 +87,17 @@
   transform-origin: center;
   border: 2px dashed #000;
   cursor: pointer;
-  animation: spin 16s linear infinite;
+  animation: spin 45s linear infinite;
+}
+
+.diamond-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transform-origin: center;
+  border: 2px dashed black;
+  animation: rotateDiamond 16s linear infinite;
 }
 
 
@@ -77,14 +106,13 @@
   width: 140px;
   height: 140px;
   opacity: 1;
-  
 }
+
 /* Rectangle 2 - medium, semi transparent */
 .diamond-2 {
   width: 160px;
   height: 160px;
   opacity: 0.6;
-  
 }
 
 /* Rectangle 3 - largest, faint */
@@ -96,17 +124,18 @@
 
 /* LABELS UNDER ICONS */
 .result-label {
-  margin-top: 20px;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
-  text-align: center;
 }
 
 .back-button-container {
   position: absolute;
   bottom: 40px;
   left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
 }
 
@@ -120,11 +149,51 @@
 }
 
 .back-diamond {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border: 2px solid black;
   transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
 }
+
+.back-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+}
+
+
+.arrow-left {
+  transform: rotate(-45deg);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.result-icon {
+  cursor: pointer;
+  font-size: 48px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index:2;
+  background: white;
+  border-radius: 50%;
+  padding: 10px;
+  border: 2px solid black;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.result-icon:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  border-color: #666;
+}
+
+
 
 /* Preview section */
 .result-preview {
@@ -132,12 +201,14 @@
   top: 60px;
   right: 60px;
   text-align: right;
+ 
 }
 
 .preview-label {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 8px;
+  color:#1a1a1a;
 }
 
 .preview-box {
@@ -190,11 +261,78 @@
 
 
 
-@keyframes spin {
+@keyframes rotateDiamond {
   0% {
-    transform: rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
   }
   100% {
-    transform: rotate(405deg);
+    transform: translate(-50%, -50%) rotate(405deg);
+  }
+}
+
+
+/* Media queries for responsiveness */
+
+@media (max-width: 768px) {
+  /* Centered content container (like icons/diamonds) */
+  .center-content,
+  .result-center-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+
+  /* Page titles like "TO START ANALYSIS" */
+  .header-text,
+  .result-header {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  /* Option icons and diamonds (scan face / gallery) */
+  .result-option,
+  .start-option {
+    transform: scale(0.9);
+    text-align: center;
+  }
+
+  /* Adjust preview box */
+  .preview-box {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Back button positioning */
+  .back-button-container {
+    left: 20px;
+    bottom: 20px;
+  }
+
+  /* Nav button */
+  .nav__button {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  /* Adjust nav text spacing */
+  .nav__logo,
+  .nav__intro {
+    font-size: 12px;
+  }
+
+  /* Tighten navbar padding */
+  .nav {
+    padding: 10px 20px;
+  }
+
+  /* Ensure no side scrolling ever happens */
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 }

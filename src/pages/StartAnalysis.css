@@ -176,3 +176,67 @@
     transform: rotate(-45deg);
   }
   
+  @media (max-width: 768px) {
+    /* Centered content container (like icons/diamonds) */
+    .center-content,
+    .result-center-content {
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+  
+    /* Page titles like "TO START ANALYSIS" */
+    .header-text,
+    .result-header {
+      font-size: 16px;
+      text-align: center;
+    }
+  
+    /* Option icons and diamonds (scan face / gallery) */
+    .result-option,
+    .start-option {
+      transform: scale(0.9);
+      text-align: center;
+    }
+  
+    /* Adjust preview box */
+    .preview-box {
+      width: 60px;
+      height: 60px;
+    }
+  
+    /* Back button positioning */
+    .back-button-container {
+      left: 20px;
+      bottom: 20px;
+    }
+  
+    /* Nav button */
+    .nav__button {
+      font-size: 12px;
+      padding: 4px 10px;
+    }
+  
+    /* Adjust nav text spacing */
+    .nav__logo,
+    .nav__intro {
+      font-size: 12px;
+    }
+  
+    /* Tighten navbar padding */
+    .nav {
+      padding: 10px 20px;
+    }
+  
+    /* Ensure no side scrolling ever happens */
+    html,
+    body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+  }
+  

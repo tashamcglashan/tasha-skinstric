@@ -30,16 +30,14 @@ export default function Result() {
           <p className="preview-label">Preview</p>
           <div className="preview-box"></div>
         </div>
-        
+
         {/* Top Left Header */}
         <div className="result-header">TO START ANALYSIS</div>
-
-        
 
         {/* Bottom Left Back Button */}
         <div className="back-button-container" onClick={() => navigate(-1)}>
           <div className="back-diamond">
-            <span className="arrow-left">&#9664;</span>
+            <span className="arrow-left">&#8592;</span>
           </div>
           <span className="back-label">BACK</span>
         </div>
@@ -47,25 +45,26 @@ export default function Result() {
         {/* Main Icons Section */}
         <div className="result-center-content">
           {/* Left - Camera */}
-          <div className="result-option scan-face" onClick={handleScanFaceClick}>
-            <div className="result-diamond-wrapper">
-              <div className="result-diamond diamond-3"></div>
-              <div className="result-diamond diamond-2"></div>
-              <div className="result-diamond diamond-1"></div>
-              <MdOutlineCameraAlt className="result-icon" />
-            </div>
+          <div className="result-option" onClick={handleScanFaceClick}>
+          <div className="result-diamond-wrapper">
+  <div className="diamond-layer diamond-1"></div>
+  <div className="diamond-layer diamond-2"></div>
+  <div className="diamond-layer diamond-3"></div>
+  <MdOutlineCameraAlt className="result-icon" />
+</div>
+
             <p className="result-label">
               ALLOW A.I. <br /> TO SCAN YOUR FACE
             </p>
           </div>
 
           {/* Right - Gallery */}
-          <div className="result-option access-gallery" onClick={handleGalleryClick}>
-            <div className="result-diamond-wrapper">
-              <div className="result-diamond diamond-3"></div>
-              <div className="result-diamond diamond-2"></div>
-              <div className="result-diamond diamond-1"></div>
-              <FaRegImages className="result-icon" />
+          <div className="result-option" onClick={handleGalleryClick}>
+          <div className="result-diamond-wrapper">
+  <div className="diamond-layer diamond-1"></div>
+  <div className="diamond-layer diamond-2"></div>
+  <div className="diamond-layer diamond-3"></div>
+              <FaRegImages className="result-icon" size={80} /> {/* Added size prop */}
             </div>
             <p className="result-label">
               ALLOW A.I. <br /> ACCESS GALLERY
