@@ -8,6 +8,7 @@ import "./Result.css";
 export default function Result() {
   const navigate = useNavigate();
   const [showCameraPrompt, setShowCameraPrompt] = useState(false);
+  
 
   const handleGalleryClick = () => {
     const input = document.createElement("input");
@@ -23,48 +24,32 @@ export default function Result() {
   return (
     <>
       <Navbar />
+      <div className="start-analysis-page">
+        {/* Header Title */}
+        <div className="analysis-title">TO START ANALYSIS</div>
 
-      <div className="result-page">
-        {/* Top Right Preview */}
-        <div className="result-preview">
-          <p className="preview-label">Preview</p>
-          <div className="preview-box"></div>
-        </div>
-
-        {/* Top Left Header */}
-        <div className="result-header">TO START ANALYSIS</div>
-
-        {/* Bottom Left Back Button */}
-        <div className="back-button-container" onClick={() => navigate(-1)}>
-          <div className="back-diamond">
-            <span className="arrow-left">&#8592;</span>
-          </div>
-          <span className="back-label">BACK</span>
-        </div>
-
-        {/* Main Icons Section */}
+        {/* Center Icons + Animated Diamonds */}
         <div className="result-center-content">
-          {/* Left - Camera */}
+          {/* Camera Option */}
           <div className="result-option" onClick={handleScanFaceClick}>
-          <div className="result-diamond-wrapper">
-  <div className="diamond-layer diamond-1"></div>
-  <div className="diamond-layer diamond-2"></div>
-  <div className="diamond-layer diamond-3"></div>
-  <MdOutlineCameraAlt className="result-icon" />
-</div>
-
+            <div className="icon-diamond-wrapper">
+              <div className="analysis-diamond"></div>
+              <div className="analysis-diamond"></div>
+              <div className="analysis-diamond delay"></div>
+              <MdOutlineCameraAlt className="result-icon" />
+            </div>
             <p className="result-label">
               ALLOW A.I. <br /> TO SCAN YOUR FACE
             </p>
           </div>
 
-          {/* Right - Gallery */}
+          {/* Gallery Option */}
           <div className="result-option" onClick={handleGalleryClick}>
-          <div className="result-diamond-wrapper">
-  <div className="diamond-layer diamond-1"></div>
-  <div className="diamond-layer diamond-2"></div>
-  <div className="diamond-layer diamond-3"></div>
-              <FaRegImages className="result-icon" size={80} /> {/* Added size prop */}
+            <div className="icon-diamond-wrapper">
+              <div className="analysis-diamond"></div>
+              <div className="analysis-diamond"></div>
+              <div className="analysis-diamond delay"></div>
+              <FaRegImages className="result-icon" size={80} />
             </div>
             <p className="result-label">
               ALLOW A.I. <br /> ACCESS GALLERY
@@ -72,7 +57,21 @@ export default function Result() {
           </div>
         </div>
 
-        {/* Camera Permission Modal */}
+        {/* Preview Top Right */}
+        <div className="result-preview">
+          <p className="preview-label">Preview</p>
+          <div className="preview-box"></div>
+        </div>
+
+        {/* Back Button Bottom Left */}
+        <div className="back-button-container" onClick={() => navigate(-1)}>
+          <div className="icon-box">
+            <i className="fa-solid fa-arrow-left"></i>
+          </div>
+          BACK
+        </div>
+
+        {/* Camera Modal */}
         {showCameraPrompt && (
           <div className="camera-popup">
             <div className="camera-popup-content">
@@ -81,29 +80,35 @@ export default function Result() {
               <div className="popup-actions">
                 <button onClick={() => setShowCameraPrompt(false)}>DENY</button>
                 <button
-                  onClick={async () => {
-                    setShowCameraPrompt(false);
-                    try {
-                      await navigator.mediaDevices.getUserMedia({ video: true });
+  onClick={async () => {
+    setShowCameraPrompt(false); // close modal immediately
 
-                      const response = await fetch(
-                        "https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo",
-                        {
-                          method: "POST",
-                          headers: { "Content-Type": "application/json" },
-                          body: JSON.stringify({ access: "granted" }),
-                        }
-                      );
+    try {
+      await navigator.mediaDevices.getUserMedia({ video: true });
 
-                      const result = await response.json();
-                      console.log("📸 API response:", result);
-                    } catch (err) {
-                      console.error("Camera access denied or error:", err);
-                    }
-                  }}
-                >
-                  ALLOW
-                </button>
+      const response = await fetch(
+        "https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ access: "granted" }),
+        }
+      );
+
+      const result = await response.json();
+      console.log("📸 API response:", result);
+
+      // ✅ Navigate to preparing screen AFTER successful API call
+      navigate("/preparing");
+
+    } catch (err) {
+      console.error("Camera access denied or error:", err);
+    }
+  }}
+>
+  ALLOW
+</button>
+
               </div>
             </div>
           </div>

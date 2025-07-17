@@ -1,0 +1,65 @@
+/* PreparingPage.css */
+
+.preparing-wrapper {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Vertical centering */
+    align-items: center;      /* Horizontal centering */
+    background-color: #fff;
+    position: fixed;          /* Ensure full-screen layout */
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
+  
+  .icon-diamond-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .analysis-diamond {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 2px dotted #aaa;
+    transform: rotate(45deg);
+    animation: rotate 10s linear infinite;
+  }
+  
+  .analysis-diamond.delay {
+    width: 120px;
+    height: 120px;
+    animation-delay: 2s;
+    border-color: #ccc;
+  }
+  
+  .preparing-text {
+    position: absolute;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0;
+  }
+  
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(45deg);
+    }
+    100% {
+      transform: rotate(405deg);
+    }
+  }
+  

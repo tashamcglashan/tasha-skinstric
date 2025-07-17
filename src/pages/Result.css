@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  gap: 200px;
   flex-wrap: wrap; /* ✅ Important for mobile! */
   position: absolute;
   top: 50%;
@@ -67,15 +67,13 @@
 }
 
 /* ICONS + ROTATING DIAMOND */
-.result-diamond-wrapper {
+.icon-diamond-wrapper {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
-  
+  align-items: center;
 }
 
 
@@ -101,26 +99,27 @@
 }
 
 
-/* Rectangle 1 - smallest, most solid */
+
+/* Rectangle 1 - smallest, most solid
 .diamond-1 {
   width: 140px;
   height: 140px;
   opacity: 1;
-}
+}*/
 
-/* Rectangle 2 - medium, semi transparent */
+/* Rectangle 2 - medium, semi transparent 
 .diamond-2 {
   width: 160px;
   height: 160px;
   opacity: 0.6;
-}
+}*/
 
-/* Rectangle 3 - largest, faint */
+/* Rectangle 3 - largest, faint 
 .diamond-3 {
   width: 180px;
   height: 180px;
   opacity: 0.3;
-}
+}*/
 
 /* LABELS UNDER ICONS */
 .result-label {
@@ -258,6 +257,9 @@
   border: none;
   cursor: pointer;
 }
+
+/* Preparing for analysis */
+
 
 
 
