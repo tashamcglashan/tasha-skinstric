@@ -1,92 +1,90 @@
 import React, { useState } from "react";
-import "./Demographics.css";
 import { Link } from "react-router-dom";
+import "./Demographics.css";
+import PredictionCircle from "../components/PredictionCircle";
 
 const Demographics = () => {
-  const [selectedRace, setSelectedRace] = useState("East Asian");
+  const [selectedCategory, setSelectedCategory] = useState("race");
+  const [selectedValue, setSelectedValue] = useState("Middle eastern");
+  const [selectedConfidence, setSelectedConfidence] = useState(25);
 
-  const raceData = [
-    { label: "East Asian", value: "96%" },
-    { label: "White", value: "6%" },
-    { label: "Black", value: "3%" },
-    { label: "South Asian", value: "2%" },
-    { label: "Latino Hispanic", value: "0%" },
-    { label: "South East Asian", value: "0%" },
-    { label: "Middle Eastern", value: "0%" },
+  const raceOptions = [
+    { label: "South asian", confidence: 39 },
+    { label: "Middle eastern", confidence: 25 },
+    { label: "Latino hispanic", confidence: 17 },
+    { label: "Black", confidence: 7 },
+    { label: "Southeast asian", confidence: 6 },
+    { label: "East asian", confidence: 3 },
+    { label: "White", confidence: 0 },
   ];
+
+  const handleSidebarClick = (category, value, confidence) => {
+    setSelectedCategory(category);
+    setSelectedValue(value);
+    setSelectedConfidence(confidence);
+  };
 
   return (
     <div className="demographics-page">
-      {/* Top Nav */}
       <nav className="demographics-nav">
-        <div className="nav-logo">
-          Skinstric <span className="nav-sub">[Analysis]</span>
-        </div>
-        <div className="nav-title">DEMOGRAPHICS</div>
-        <div className="predicted">PREDICTED RACE & AGE</div>
+        <span className="nav-logo">Skinstric</span>
+        <span className="nav-title">[ Analysis ]</span>
       </nav>
 
-      {/* Page Layout */}
       <div className="demographics-wrapper">
         {/* Sidebar */}
         <div className="sidebar">
-  <div className="sidebar-section active">
-    {selectedRace.toUpperCase()}
-    <br />
-    <span>RACE</span>
-  </div>
-  <div className="sidebar-section">30–39 <br /><span>AGE</span></div>
-  <div className="sidebar-section">FEMALE <br /><span>SEX</span></div>
-
-  <Link to="/analysis" className="back-button">
-    <div className="icon-box">
-      <i className="fa-solid fa-arrow-left"></i>
-    </div>
-    BACK
-  </Link>
-</div>
-
-
-        {/* Middle Section */}
-        <div className="middle-section">
-          <div className="middle-content-box">
-            <h2 className="main-prediction">{selectedRace}</h2>
-            <div className="confidence-circle">
-              <span>
-                {
-                  raceData.find((item) => item.label === selectedRace)?.value ||
-                  "0%"
-                }
-              </span>
+          {[
+            { category: "race", value: "Middle eastern", confidence: 25 },
+            { category: "age", value: "0–2", confidence: 10 },
+            { category: "sex", value: "Male", confidence: 90 },
+          ].map(({ category, value, confidence }) => (
+            <div
+              key={category}
+              className={`sidebar-section ${
+                selectedCategory === category ? "active" : ""
+              }`}
+              onClick={() => handleSidebarClick(category, value, confidence)}
+            >
+              {value}
+              <span>{category.toUpperCase()}</span>
             </div>
+          ))}
+
+          <div className="sidebar-back">
+            <Link to="/analysis">BACK</Link>
           </div>
         </div>
 
-        {/* Right Section */}
+        {/* Center */}
+        <div className="middle-section">
+          <div className="middle-content-box">
+            <h2 className="main-prediction">{selectedValue}</h2>
+            <PredictionCircle percentage={selectedConfidence} />
+          </div>
+        </div>
+
+        {/* Right panel */}
         <div className="right-panel">
           <div className="confidence-header">
-            <span>RACE</span>
-            <span>A.I. CONFIDENCE</span>
+            <span>Race</span>
+            <span>A.I. Confidence</span>
           </div>
           <ul className="confidence-list">
-            {raceData.map(({ label, value }) => (
+            {raceOptions.map((item, index) => (
               <li
-                key={label}
-                className={`confidence-item ${
-                    selectedRace.toLowerCase() === label.toLowerCase() ? "selected" : ""
-                  }`}
-                  
+                key={index}
+                className={item.label === selectedValue ? "selected" : ""}
+                onClick={() =>
+                  handleSidebarClick("race", item.label, item.confidence)
+                }
               >
-                <span className="diamond-shape" />
-                {label} <span>{value}</span>
+                <div className="diamond-shape" />
+                <span>{item.label}</span>
+                <span>{item.confidence}%</span>
               </li>
             ))}
           </ul>
-
-          <div className="bottom-buttons">
-            <button className="reset-btn">RESET</button>
-            <button className="confirm-btn">CONFIRM</button>
-          </div>
         </div>
       </div>
     </div>

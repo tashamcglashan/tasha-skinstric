@@ -54,7 +54,7 @@ export default function Analysis() {
           BACK
         </div>
 
-        <div className="proceed-button" onClick={() => navigate("/deomographics")}>
+        <div className="proceed-button" onClick={() => navigate("/demographics")}>
           <div className="icon-box">
             <i className="fa-solid fa-arrow-right"></i>
           </div>
