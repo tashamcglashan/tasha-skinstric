@@ -2,11 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Nav";
 import "./Analysis.css";
+import {Link} from "react-router-dom";
 
 export default function Analysis() {
   const navigate = useNavigate();
   const handleGetSummary = () => {
-    navigate("/deomographics");
+    navigate("/demographics");
   };
 
   return (
@@ -30,9 +31,9 @@ export default function Analysis() {
 
         {/* Inner diamond buttons */}
         <div className="diamond-button-grid">
-          <div className="diamond-button top" onClick={() => console.log("Demographics clicked")}>
-            <span>DEMOGRAPHICS</span>
-          </div>
+          <Link to="/demographics" className="diamond-button top">
+          <span>DEMOGRAPHICS</span>
+          </Link>
           <div className="diamond-button right" onClick={() => console.log("Cosmetic clicked")}>
             <span>COSMETIC CONCERNS</span>
           </div>

@@ -9,14 +9,13 @@
 
 .demographics-nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  border-bottom: 1px solid #ddd;
-  font-family: Arial, sans-serif;
+  gap: .5rem;
   font-size: 14px;
-  color: #222;
+  font-weight: bold;
+  text-transform: uppercase;
 }
+
 
 .nav-logo {
   font-weight: bold;
@@ -27,8 +26,8 @@
 }
 
 .nav-title {
-  font-size: 18px;
-  letter-spacing: 1px;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .predicted {
@@ -42,19 +41,12 @@
   flex: 1;
 }
 
-/* Left sidebar */
-.sidebar {
-  width: 180px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
+/* Sidebar Section */
+/* Sidebar Section */
 .sidebar-section {
   background: #eee;
   color: #222;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   padding: 1rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -65,185 +57,222 @@
 
 .sidebar-section span {
   display: block;
-  font-size: 12px;
-  color: #555;
-  text-transform: none;
-}
-
-.sidebar-section:hover {
-  background: #ccc;
-}
-
-.sidebar-section.active {
-  background: #000;
-  color: #fff;
-}
-
-.sidebar-section.active span {
-  color: #ddd;
-}
-
-/* Back button */
-.back-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: auto;
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
+  font-size: 0.75rem;
+  color: #777;
   text-transform: uppercase;
 }
 
-.icon-box {
-  border: 2px solid black;
-  width: 36px;
-  height: 36px;
+.sidebar-section.active {
+  background-color: #000;
+  color: #fff;
+}
+
+.sidebar-boxes {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(45deg);
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.icon-box i {
-  transform: rotate(-45deg);
+/* Nav styles */
+.demographics-nav {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 2rem 0.25rem 2rem;
 }
 
-/* Middle section */
+.nav-logo {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+
+
+/* Header section */
+.nav-header-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem 1rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.nav-header-main {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.nav-subtitle {
+  font-size: 1rem;
+  color: #555;
+  text-transform: uppercase;
+}
+
+/* Layout wrapper */
+.demographics-wrapper {
+  display: flex;
+  height: calc(100vh - 200px);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 160px;
+  padding: 1rem;
+}
+
+/* Center Section */
 .middle-section {
   flex: 1;
-  background: #f4f4f4;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
 }
 
 .middle-content-box {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .main-prediction {
   font-size: 2rem;
-  margin-bottom: 1rem;
+  font-weight: 600;
   text-transform: capitalize;
-  color: #2c3e50;
+  align-self: center;
 }
 
-/* Right section */
+.main-prediction-title {
+  margin-top:-150px;
+  margin-left: -280px;
+}
+
+
+.prediction-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prediction-circle svg {
+  width: 180px;
+  height:110px;
+}
+
+
+
+.middle-note {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Right panel */
 .right-panel {
-  width: 280px;
+
+  width: 240px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .confidence-header {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  font-size: 0.9rem;
   font-weight: bold;
-  border-bottom: 1px solid #ccc;
   text-transform: uppercase;
-  font-size: 12px;
+  color: #666;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .confidence-list {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0;
 }
 
-.confidence-item {
+.confidence-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: background 0.2s ease;
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
   text-transform: capitalize;
 }
 
-.confidence-item:hover {
-  background-color: #f0f0f0;
+.confidence-list li:hover {
+  background-color: #e0e0e0;
 }
 
-.confidence-item.selected {
+.confidence-list li.selected {
   background-color: #000;
-  color: #fff;
-}
-
-.confidence-item.selected .diamond-shape {
-  background-color: #fff;
+  color: white;
 }
 
 .diamond-shape {
-  width: 10px;
-  height: 10px;
-  background-color: #000;
+  width: 6px;
+  height: 6px;
+  background-color: black;
   transform: rotate(45deg);
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 
-/* Bottom buttons */
-.bottom-buttons {
+.prediction-circle {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
-.reset-btn,
-.confirm-btn {
-  padding: 0.5rem 1.25rem;
-  border: 2px solid #000;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: #fff;
-  cursor: pointer;
-  transition: 0.3s ease;
+.prediction-circle svg {
+  width: 180px;
+  height: 180px;
 }
 
-.confirm-btn {
-  background: #000;
-  color: #fff;
+
+/* Bottom Buttons */
+.analysis-bottom-buttons {
+  position: absolute;
+  bottom: 2rem;
+  left: 800px;
+  display: flex;
+  gap: 2rem;
 }
 
-.confirm-btn:hover {
-  background: #222;
-}
-
-.reset-btn:hover {
-  background: #eee;
-}
-
-/* SVG Circle (inside PredictionCircle) */
-.prediction-svg {
-  width: 200px;
-  height: 200px;
-  transform: rotate(-90deg);
-  margin: 0 auto;
-}
-
-.prediction-text {
-  transform: rotate(90deg);
-  font-size: 1.5rem;
-  fill: #2c3e50;
-  text-anchor: middle;
-  dominant-baseline: middle;
-}
-
-.prediction-container {
-  position: relative;
-  width: 200px;
-  height: 200px;
+.back-button,
+.home-button {
   display: flex;
   align-items: center;
-  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: black
 }
 
-.prediction-container svg {
-  position: absolute;
-  top: 0;
-  left: 0;
+.back-button .icon-box,
+.home-button .icon-box {
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  transform: rotate(45deg);
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.back-button .icon-box i,
+.home-button .icon-box i {
+  transform: rotate(-45deg);
+}
+

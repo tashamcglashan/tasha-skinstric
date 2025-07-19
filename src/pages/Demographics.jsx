@@ -8,15 +8,31 @@ const Demographics = () => {
   const [selectedValue, setSelectedValue] = useState("Middle eastern");
   const [selectedConfidence, setSelectedConfidence] = useState(25);
 
-  const raceOptions = [
-    { label: "South asian", confidence: 39 },
-    { label: "Middle eastern", confidence: 25 },
-    { label: "Latino hispanic", confidence: 17 },
-    { label: "Black", confidence: 7 },
-    { label: "Southeast asian", confidence: 6 },
-    { label: "East asian", confidence: 3 },
-    { label: "White", confidence: 0 },
-  ];
+  const data = {
+    race: [
+      { label: "South asian", confidence: 39 },
+      { label: "Middle eastern", confidence: 25 },
+      { label: "Latino hispanic", confidence: 17 },
+      { label: "Black", confidence: 7 },
+      { label: "Southeast asian", confidence: 6 },
+      { label: "East asian", confidence: 3 },
+      { label: "White", confidence: 3 },
+    ],
+    age: [
+      { label: "0–9", confidence: 5 },
+      { label: "10-19", confidence: 8 },
+      { label: "20-29", confidence: 12 },
+      { label: "30-39", confidence: 20 },
+      { label: "40-49", confidence: 28 },
+      { label: "50-59", confidence: 10 },
+      { label: "60-69", confidence: 10 },
+      { label: "70+", confidence: 7 },
+    ],
+    sex: [
+      { label: "Male", confidence: 90 },
+      { label: "Female", confidence: 10 },
+    ],
+  };
 
   const handleSidebarClick = (category, value, confidence) => {
     setSelectedCategory(category);
@@ -26,18 +42,25 @@ const Demographics = () => {
 
   return (
     <div className="demographics-page">
+      {/* Top Navigation */}
       <nav className="demographics-nav">
         <span className="nav-logo">Skinstric</span>
         <span className="nav-title">[ Analysis ]</span>
       </nav>
+
+      {/* Header section */}
+      <div className="nav-header-container">
+        <h1 className="nav-header-main">Demographics</h1>
+        <span className="nav-subtitle">Predicted Race and Age</span>
+      </div>
 
       <div className="demographics-wrapper">
         {/* Sidebar */}
         <div className="sidebar">
           {[
             { category: "race", value: "Middle eastern", confidence: 25 },
-            { category: "age", value: "0–2", confidence: 10 },
-            { category: "sex", value: "Male", confidence: 90 },
+            { category: "age", value: "30-39", confidence: 20 },
+            { category: "sex", value: "Female", confidence: 10 },
           ].map(({ category, value, confidence }) => (
             <div
               key={category}
@@ -50,33 +73,48 @@ const Demographics = () => {
               <span>{category.toUpperCase()}</span>
             </div>
           ))}
-
-          <div className="sidebar-back">
-            <Link to="/analysis">BACK</Link>
-          </div>
         </div>
 
-        {/* Center */}
+        {/* Center Section */}
         <div className="middle-section">
           <div className="middle-content-box">
-            <h2 className="main-prediction">{selectedValue}</h2>
-            <PredictionCircle percentage={selectedConfidence} />
+            <h2 className="main-prediction main-prediction-title">{selectedValue}</h2>
+            <div className="prediction-circle">
+              <PredictionCircle percentage={selectedConfidence} />
+            </div>
+          </div>
+          <div className="middle-note">
+            If A.I. estimate is wrong, select the correct one.
+          </div>
+          <div className="analysis-bottom-buttons">
+            <Link to="/" className="back-button">
+              <div className="icon-box">
+                <i className="fa-solid fa-arrow-left"></i>
+              </div>
+              BACK
+            </Link>
+            <Link to="/" className="home-button">
+              <div className="icon-box">
+                <i className="fa-solid fa-arrow-right" style={{ color: 'black' }}></i>
+              </div>
+             HOME
+            </Link>
           </div>
         </div>
 
-        {/* Right panel */}
+        {/* Right Panel */}
         <div className="right-panel">
           <div className="confidence-header">
-            <span>Race</span>
+            <span>{selectedCategory}</span>
             <span>A.I. Confidence</span>
           </div>
           <ul className="confidence-list">
-            {raceOptions.map((item, index) => (
+            {data[selectedCategory].map((item, index) => (
               <li
                 key={index}
                 className={item.label === selectedValue ? "selected" : ""}
                 onClick={() =>
-                  handleSidebarClick("race", item.label, item.confidence)
+                  handleSidebarClick(selectedCategory, item.label, item.confidence)
                 }
               >
                 <div className="diamond-shape" />
