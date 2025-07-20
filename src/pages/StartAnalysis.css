@@ -1,242 +1,131 @@
-/* Layout wrapper */
 .start-analysis-page {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    overflow: hidden;
-  }
-  
-  /* "TO START ANALYSIS" under navbar */
-  .analysis-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    letter-spacing: 1px;
-    font-weight: 600;
-    margin-left: 30px;
-    margin-top: 80px;
-    z-index: 2;
-    position: relative;
-    text-align: left;
-  }
-  
-  /* Main content */
-  .center-content {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 2;
-  }
-  
-  /* Input hint text */
-  .click-hint {
-    font-size: 12px;
-    color: #9999b1;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-  }
-  
-  /* Input field and text replacement */
-  .form-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 36px;
-    font-weight: 400;
-    color: #4d4d4d;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #4d4d4d;
-    padding-bottom: 6px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-  }
-  
-  .form-title:focus {
-    outline: none;
-  }
-  
-  /* Rotating diamonds (now renamed) */
-  .analysis-animated-diamonds {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    pointer-events: none;
-  }
-  
-  .analysis-diamond {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 1px dotted #aaa;
-    top: 0;
-    left: 0;
-    animation: rotate 20s linear infinite;
-    transform-origin: center;
-    opacity: 0.3;
-  }
-  
-  .analysis-diamond:nth-child(2) {
-    animation-delay: 2s;
-  }
-  .analysis-diamond:nth-child(3) {
-    animation-delay: 4s;
-  }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  /* Loading dots */
-  .loading-text {
-    font-size: 16px;
-    color: #4d4d4d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .dot {
-    animation: blink 1.2s infinite;
-    opacity: 0.4;
-  }
-  
-  .dot:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  .dot:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-  
-  @keyframes blink {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-  }
-  
-  /* Final message */
-  .thank-you-text {
-    font-size: 20px;
-    color: #4d4d4d;
-    margin-top: 25px;
-  }
-  
-  /* Buttons */
-  .back-button,
-  .proceed-button {
-    position: fixed;
-    bottom: 30px;
-    display: flex;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 1px;
-    color: #111;
-    cursor: pointer;
-    z-index: 3;
-    text-decoration: none;
-    background: none;
-    border: none;
-  }
-  
-  .back-button {
-    left: 30px;
-  }
-  
-  .proceed-button {
-    right: 30px;
-    flex-direction: row-reverse;
-  }
-  
-  /* Diamond box */
-  .icon-box {
-    width: 35px;
-    height: 35px;
-    border: 1px solid #111;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.analysis-title {
+  position: absolute;
+  top: 100px;
+  left: 80px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.center-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.analysis-animated-diamonds {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.analysis-diamond {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border: 2px dotted #aaa;
+  transform: rotate(45deg);
+  animation: rotate 8s linear infinite;
+  transform-origin: center;
+}
+
+.analysis-diamond.middle {
+  width: 200px;
+  height: 200px;
+  top: 50px;
+  left: 50px;
+  animation-delay: 0.5s;
+}
+
+.analysis-diamond.inner {
+  width: 100px;
+  height: 100px;
+  top: 100px;
+  left: 100px;
+  animation-delay: 1s;
+}
+
+@keyframes rotate {
+  from {
     transform: rotate(45deg);
-    margin: 0 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
-  
-  .icon-box i,
-  .icon-box svg {
-    transform: rotate(-45deg);
+  to {
+    transform: rotate(405deg);
   }
-  
-  @media (max-width: 768px) {
-    /* Centered content container (like icons/diamonds) */
-    .center-content,
-    .result-center-content {
-      flex-direction: column;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
-      padding: 0 20px;
-    }
-  
-    /* Page titles like "TO START ANALYSIS" */
-    .header-text,
-    .result-header {
-      font-size: 16px;
-      text-align: center;
-    }
-  
-    /* Option icons and diamonds (scan face / gallery) */
-    .result-option,
-    .start-option {
-      transform: scale(0.9);
-      text-align: center;
-    }
-  
-    /* Adjust preview box */
-    .preview-box {
-      width: 60px;
-      height: 60px;
-    }
-  
-    /* Back button positioning */
-    .back-button-container {
-      left: 20px;
-      bottom: 20px;
-    }
-  
-    /* Nav button */
-    .nav__button {
-      font-size: 12px;
-      padding: 4px 10px;
-    }
-  
-    /* Adjust nav text spacing */
-    .nav__logo,
-    .nav__intro {
-      font-size: 12px;
-    }
-  
-    /* Tighten navbar padding */
-    .nav {
-      padding: 10px 20px;
-    }
-  
-    /* Ensure no side scrolling ever happens */
-    html,
-    body {
-      overflow-x: hidden;
-      max-width: 100vw;
-    }
-  }
-  
+}
+
+/* Centered content inside diamonds */
+.center-inside-diamonds {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.click-hint {
+  font-size: 0.75rem;
+  color: gray;
+  margin-bottom: 0.5rem;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  border: none;
+  border-bottom: 1px solid #888;
+  outline: none;
+  background: transparent;
+  color: #333;
+  text-align: center;
+}
+
+.loading-text,
+.thank-you-text,
+.error-message {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.proceed-button,
+.back-button {
+  position: absolute;
+  bottom: 40px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-button {
+  left: 40px;
+}
+
+.proceed-button {
+  right: 40px;
+}
+
+.icon-box {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+
+.icon-box i {
+  transform: rotate(-45deg);
+}

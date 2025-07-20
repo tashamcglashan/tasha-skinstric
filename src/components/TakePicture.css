@@ -1,0 +1,101 @@
+.camera-page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.top-bar {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.logo-text {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.bracket-box {
+  font-size: 14px;
+}
+
+.camera-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.camera-video,
+.captured-image {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.take-picture-button {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.camera-instructions {
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+
+.camera-tips {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 12px;
+}
+
+.great-shot {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+
+.proceed-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.icon-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}

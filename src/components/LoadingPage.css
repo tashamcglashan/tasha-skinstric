@@ -1,0 +1,107 @@
+.loading-wrapper {
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .diamond-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+  }
+  
+  .dotted-diamond {
+    position: absolute;
+    border: 2px dotted #ccc;
+    transform: rotate(45deg);
+    animation: spin 6s linear infinite;
+    top: 0;
+    left: 0;
+  }
+  
+  
+.outer {
+    width: 200px;
+    height: 200px;
+    animation-delay: 0s;
+  }
+  
+  .middle {
+    width: 140px;
+    height: 140px;
+    top: 30px;
+    left: 30px;
+    animation-delay: 0.5s;
+  }
+  
+  .inner {
+    width: 80px;
+    height: 80px;
+    top: 60px;
+    left: 60px;
+    animation-delay: 1s;
+  } 
+  
+  .camera-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .camera-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .camera-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+  }
+  
+  .instructions {
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .instruction-title {
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .instruction-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .instruction-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+  }
+  
+  .diamond-symbol {
+    color: #000;
+  }
+  
+  /* Animation for dotted diamonds */
+  @keyframes spin {
+    0% {
+      transform: rotate(45deg);
+    }
+    100% {
+      transform: rotate(405deg);
+    }
+  }
+  

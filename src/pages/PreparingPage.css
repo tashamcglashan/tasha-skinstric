@@ -1,65 +1,140 @@
-/* PreparingPage.css */
+/* === PAGE === */
+.start-analysis-page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+}
 
-.preparing-wrapper {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* Vertical centering */
-    align-items: center;      /* Horizontal centering */
-    background-color: #fff;
-    position: fixed;          /* Ensure full-screen layout */
-    top: 0;
-    left: 0;
-    z-index: 9999;
-  }
-  
-  .icon-diamond-wrapper {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .analysis-diamond {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border: 2px dotted #aaa;
+/* === NAV TITLE === */
+.analysis-title {
+  position: absolute;
+  top: 50px;
+  left: 60px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #1a1a1a;
+  letter-spacing: 0.5px;
+}
+
+/* === CENTERED WRAPPER FOR DIAMONDS + INPUT === */
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Outer container for diamonds and text */
+.diamond-wrapper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+}
+
+/* Diamonds + centered text stacked inside here */
+.diamond-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* === DIAMONDS === */
+.analysis-diamond {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  transform: rotate(45deg);
+  translate: -50% -50%;
+  border: 2px dotted #bbb;
+}
+
+.analysis-diamond.outer {
+  width: 250px;
+  height: 250px;
+  animation: spin 6s linear infinite;
+  animation-delay: 0s;
+}
+
+.analysis-diamond.middle {
+  width: 180px;
+  height: 180px;
+  animation: spin 7s linear infinite;
+  animation-delay: 0.4s;
+}
+
+.analysis-diamond.inner {
+  width: 110px;
+  height: 110px;
+  animation: spin 8s linear infinite;
+  animation-delay: 0.8s;
+}
+
+@keyframes spin {
+  0% {
     transform: rotate(45deg);
-    animation: rotate 10s linear infinite;
   }
-  
-  .analysis-diamond.delay {
-    width: 120px;
-    height: 120px;
-    animation-delay: 2s;
-    border-color: #ccc;
+  100% {
+    transform: rotate(405deg);
   }
-  
-  .preparing-text {
-    position: absolute;
-    color: #333;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: center;
-    width: 100%;
-    transform: translateY(-50%);
-    top: 50%;
-    left: 0;
-  }
-  
-  
-  @keyframes rotate {
-    0% {
-      transform: rotate(45deg);
-    }
-    100% {
-      transform: rotate(405deg);
-    }
-  }
-  
+}
+
+/* === TEXT & INPUT INSIDE DIAMONDS === */
+.center-content-inside {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.click-hint {
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.form-title {
+  border: none;
+  border-bottom: 1px solid #333;
+  outline: none;
+  font-size: 24px;
+  text-align: center;
+  width: 240px;
+  padding: 6px;
+  color: #333;
+  font-weight: 400;
+  background: transparent;
+}
+
+/* === STEP 3 LOADING TEXT === */
+.loading-text,
+.thank-you-text {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+}
+
+.dot {
+  animation: blink 1.2s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* === ERROR M*

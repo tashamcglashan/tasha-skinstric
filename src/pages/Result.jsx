@@ -99,7 +99,7 @@ export default function Result() {
       console.log("📸 API response:", result);
 
       // ✅ Navigate to preparing screen AFTER successful API call
-      navigate("/preparing");
+      navigate("/camera-loader");
 
     } catch (err) {
       console.error("Camera access denied or error:", err);

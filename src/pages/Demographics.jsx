@@ -5,8 +5,12 @@ import PredictionCircle from "../components/PredictionCircle";
 
 const Demographics = () => {
   const [selectedCategory, setSelectedCategory] = useState("race");
-  const [selectedValue, setSelectedValue] = useState("Middle eastern");
-  const [selectedConfidence, setSelectedConfidence] = useState(25);
+
+  const [selectedValues, setSelectedValues] = useState({
+    race: { label: "Middle eastern", confidence: 25 },
+    age: { label: "30-39", confidence: 20 },
+    sex: { label: "Female", confidence: 10 },
+  });
 
   const data = {
     race: [
@@ -36,8 +40,10 @@ const Demographics = () => {
 
   const handleSidebarClick = (category, value, confidence) => {
     setSelectedCategory(category);
-    setSelectedValue(value);
-    setSelectedConfidence(confidence);
+    setSelectedValues((prev) => ({
+      ...prev,
+      [category]: { label: value, confidence },
+    }));
   };
 
   return (
@@ -57,19 +63,21 @@ const Demographics = () => {
       <div className="demographics-wrapper">
         {/* Sidebar */}
         <div className="sidebar">
-          {[
-            { category: "race", value: "Middle eastern", confidence: 25 },
-            { category: "age", value: "30-39", confidence: 20 },
-            { category: "sex", value: "Female", confidence: 10 },
-          ].map(({ category, value, confidence }) => (
+          {["race", "age", "sex"].map((category) => (
             <div
               key={category}
               className={`sidebar-section ${
                 selectedCategory === category ? "active" : ""
               }`}
-              onClick={() => handleSidebarClick(category, value, confidence)}
+              onClick={() =>
+                handleSidebarClick(
+                  category,
+                  selectedValues[category].label,
+                  selectedValues[category].confidence
+                )
+              }
             >
-              {value}
+              {selectedValues[category].label}
               <span>{category.toUpperCase()}</span>
             </div>
           ))}
@@ -78,9 +86,13 @@ const Demographics = () => {
         {/* Center Section */}
         <div className="middle-section">
           <div className="middle-content-box">
-            <h2 className="main-prediction main-prediction-title">{selectedValue}</h2>
+            <h2 className="main-prediction main-prediction-title">
+              {selectedValues[selectedCategory].label}
+            </h2>
             <div className="prediction-circle">
-              <PredictionCircle percentage={selectedConfidence} />
+              <PredictionCircle
+                percentage={selectedValues[selectedCategory].confidence}
+              />
             </div>
           </div>
           <div className="middle-note">
@@ -95,9 +107,12 @@ const Demographics = () => {
             </Link>
             <Link to="/" className="home-button">
               <div className="icon-box">
-                <i className="fa-solid fa-arrow-right" style={{ color: 'black' }}></i>
+                <i
+                  className="fa-solid fa-arrow-right"
+                  style={{ color: "black" }}
+                ></i>
               </div>
-             HOME
+              HOME
             </Link>
           </div>
         </div>
@@ -112,9 +127,17 @@ const Demographics = () => {
             {data[selectedCategory].map((item, index) => (
               <li
                 key={index}
-                className={item.label === selectedValue ? "selected" : ""}
+                className={
+                  item.label === selectedValues[selectedCategory].label
+                    ? "selected"
+                    : ""
+                }
                 onClick={() =>
-                  handleSidebarClick(selectedCategory, item.label, item.confidence)
+                  handleSidebarClick(
+                    selectedCategory,
+                    item.label,
+                    item.confidence
+                  )
                 }
               >
                 <div className="diamond-shape" />
