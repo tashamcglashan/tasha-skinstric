@@ -1,71 +1,51 @@
-import React, { useState } from 'react';
-import './Hero.css';
-import { FaPlay } from 'react-icons/fa';
-import { Link } from "react-router-dom";
-
+import React from "react";
+import { FaPlay } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import "./Hero.css";
 
 export default function Hero() {
-  const [hoverDirection, setHoverDirection] = useState(null);
+  const navigate = useNavigate();
 
   return (
-    <section className={`hero ${hoverDirection}`}>
-      {/* Left Large Diamond Border */}
-      <div className="diamond-border diamond-border-left"></div>
-
-      {/* Right Large Diamond Border */}
-      <div className="diamond-border diamond-border-right"></div>
-
+    <div className="hero">
+      {/* Top Left Branding */}
       <div className="hero__top">
-        {/* Left Section */}
-        <div
-          className="hero__left"
-          onMouseEnter={() => setHoverDirection('hover-left')}
-          onMouseLeave={() => setHoverDirection(null)}
-        >
-          <div className="hover-container">
-            <div className="diamond">
-              <div className="arrow-wrapper">
-                <FaPlay className="arrow left flipped" />
-              </div>
-            </div>
-            <p className="hero__label">Discover A.I.</p>
-          </div>
-        </div>
-
-        {/* Center Section */}
-        <div className="hero__center">
-          <h1 className="hero__title">
-            Sophisticated<br />skincare
-          </h1>
-        </div>
-
-        {/* Right Section */}
-        <div
-          className="hero__right"
-          onMouseEnter={() => setHoverDirection('hover-right')}
-          onMouseLeave={() => setHoverDirection(null)}
-        >
-          <Link to="/start-analysis" className="hero__link">
-          <div className="hover-container">
-            <p className="hero__label">Take Test</p>
-            <div className="diamond">
-              <div className="arrow-wrapper">
-                <FaPlay className="arrow right" />
-              </div>
-            </div>
-          </div>
-        
-        </Link>
-      </div>
+        SKINSTRIC <span className="hero__intro">[ INTRO ]</span>
       </div>
 
-      {/* Bottom Paragraph */}
+      {/* Center Title */}
+      <div className="hero__center">
+        <h1 className="hero__title">Sophisticated<br />skincare</h1>
+      </div>
+
+      {/* Left Section */}
+      <div className="hero__side hero__left" onClick={() => navigate("/start-analysis")}>
+        <div className="hero__arrow-button">
+          <div className="diamond">
+            <FaPlay className="arrow left" />
+          </div>
+          <p className="hero__label">Discover A.I.</p>
+        </div>
+      </div>
+
+      {/* Right Section */}
+      <div className="hero__side hero__right" onClick={() => navigate("/start-analysis")}>
+        <div className="hero__arrow-button">
+          <p className="hero__label">Take Test</p>
+          <div className="diamond">
+            <FaPlay className="arrow right" />
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Description */}
       <div className="hero__bottom">
-        <p>
-          SKINSTRIC DEVELOPED AN A.I. THAT CREATES A HIGHLY-PERSONALIZED ROUTINE
-          TAILORED TO WHAT YOUR SKIN NEEDS.
-        </p>
+        SKINSTRIC DEVELOPED AN A.I. THAT CREATES
+        <br />
+        A HIGHLY-PERSONALISED ROUTINE TAILORED TO
+        <br />
+        WHAT YOUR SKIN NEEDS.
       </div>
-    </section>
+    </div>
   );
 }

@@ -8,6 +8,7 @@ export default function StartAnalysis() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [error, setError] = useState("");
+  const [fadeOutClick, setFadeOutClick] = useState(false);
   const navigate = useNavigate();
 
   const isValidString = (value) => /^[A-Za-z\s]+$/.test(value.trim());
@@ -28,9 +29,11 @@ export default function StartAnalysis() {
           return;
         }
 
-        setStep(3); // show loading
+        setFadeOutClick(true); // trigger fade out effect
 
-        // Store in localStorage
+        setStep(3); // Show loading
+
+        // Store to localStorage
         localStorage.setItem("name", name);
         localStorage.setItem("location", location);
 
@@ -59,64 +62,72 @@ export default function StartAnalysis() {
       <Navbar />
       <div className="start-analysis-page">
         <div className="analysis-title">TO START ANALYSIS</div>
-        <div className="center-wrapper">
-  <div className="analysis-animated-diamonds">
-    <div className="analysis-diamond outer"></div>
-    <div className="analysis-diamond middle"></div>
-    <div className="analysis-diamond inner"></div>
 
-    {/* Click to type text in the middle */}
-    <div className="diamond-center-text">
-      {step === 1 || step === 2 ? "CLICK TO TYPE" : ""}
-    </div>
-  </div>
+        {/* Rotating Diamonds */}
+        <div className="diamond-wrapper">
+          <div className="diamond diamond-1"></div>
+          <div className="diamond diamond-2"></div>
+          <div className="diamond diamond-3"></div>
 
-  {/* Input or messages appear below the diamonds */}
-  <div className="input-and-status">
-    {step === 1 && (
-      <input
-        className="form-title"
-        autoFocus
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Introduce Yourself"
-        onKeyDown={handleKeyDown}
-      />
-    )}
+          <div className="diamond-content">
+            {(!name || (step === 2 && !location) || (step === 2 && !fadeOutClick)) && (
+              <p className={`click-text ${fadeOutClick ? "fade-out" : ""}`}>
+                CLICK TO TYPE
+              </p>
+            )}
+          </div>
+        </div>
 
-    {step === 2 && (
-      <input
-        className="form-title"
-        autoFocus
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        placeholder="Your City"
-        onKeyDown={handleKeyDown}
-      />
-    )}
+        {/* Input & Status */}
+        <div className="input-and-status">
+          {step === 1 && (
+            <input
+              className="form-title"
+              autoFocus
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Introduce Yourself"
+              onKeyDown={handleKeyDown}
+            />
+          )}
 
-    {step === 3 && (
-      <div className="loading-text">
-        Processing submission<span className="dot">.</span>
-        <span className="dot">.</span>
-        <span className="dot">.</span>
-      </div>
-    )}
-
-    {step === 4 && (
-      <div className="thank-you-text">
-        Thank you!
-        <br />
-        Proceed to the next step!
-      </div>
-    )}
-
-    {error && <div className="error-message">{error}</div>}
-  </div>
-</div>
+{step === 2 && (
+  <input
+    className="form-title"
+    autoFocus
+    value={location}
+    onChange={(e) => {
+      setLocation(e.target.value);
+      if (e.target.value.trim().length > 0) {
+        setFadeOutClick(true); // ✅ trigger fade as soon as user types
+      }
+    }}
+    placeholder="Your City"
+    onKeyDown={handleKeyDown}
+  />
+)}
 
 
-        {/* Navigation Buttons */}
+          {step === 3 && (
+            <div className="loading-text">
+              Processing submission<span className="dot">.</span>
+              <span className="dot">.</span>
+              <span className="dot">.</span>
+            </div>
+          )}
+
+          {step === 4 && (
+            <div className="thank-you-text">
+              Thank you!
+              <br />
+              Proceed to the next step!
+            </div>
+          )}
+
+          {error && <div className="error-message">{error}</div>}
+        </div>
+
+        {/* Bottom Buttons */}
         <Link to="/" className="back-button">
           <div className="icon-box">
             <i className="fa-solid fa-arrow-left"></i>
@@ -125,7 +136,10 @@ export default function StartAnalysis() {
         </Link>
 
         {step === 4 && (
-          <button className="proceed-button" onClick={() => navigate("/result")}>
+          <button
+            className="proceed-button"
+            onClick={() => navigate("/result")}
+          >
             <div className="icon-box">
               <i className="fa-solid fa-arrow-right"></i>
             </div>

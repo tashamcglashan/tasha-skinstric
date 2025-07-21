@@ -1,61 +1,63 @@
 .start-analysis-page {
-  position: relative;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
-}
-
-.analysis-title {
-  position: absolute;
-  top: 100px;
-  left: 80px;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.center-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.analysis-animated-diamonds {
+  background: #fff;
   position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.analysis-diamond {
+/* Center diamonds and content as a stack */
+.diamond-wrapper {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Diamond base style */
+/* Diamond base (keep this unchanged) */
+.diamond {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 300px;
-  border: 2px dotted #aaa;
-  transform: rotate(45deg);
-  animation: rotate 8s linear infinite;
-  transform-origin: center;
+  border: 2px dotted #999;
+  transform: rotate(-45deg);
+  pointer-events: none;
 }
 
-.analysis-diamond.middle {
-  width: 200px;
-  height: 200px;
-  top: 50px;
-  left: 50px;
+/* Outer diamond: slowest */
+.diamond-1 {
+  width: 500px;
+  height: 500px;
+  opacity: 0.3;
+  animation: spin1 60s linear infinite;
+  animation-delay: 0s;
+}
+
+/* Middle diamond: medium speed */
+.diamond-2 {
+  width: 420px;
+  height: 420px;
+  opacity: 0.5;
+  animation: spin2 45s linear infinite;
   animation-delay: 0.5s;
 }
 
-.analysis-diamond.inner {
-  width: 100px;
-  height: 100px;
-  top: 100px;
-  left: 100px;
+/* Inner diamond: fastest */
+.diamond-3 {
+  width: 340px;
+  height: 340px;
+  opacity: 0.7;
+  animation: spin3 30s linear infinite;
   animation-delay: 1s;
 }
 
-@keyframes rotate {
+/* Individual keyframes for more natural effect */
+@keyframes spin1 {
   from {
     transform: rotate(45deg);
   }
@@ -64,48 +66,104 @@
   }
 }
 
-/* Centered content inside diamonds */
-.center-inside-diamonds {
+@keyframes spin2 {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(405deg);
+  }
+}
+
+@keyframes spin3 {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(405deg);
+  }
+}
+
+
+/* Content inside the smallest diamond */
+.diamond-content {
   position: absolute;
-  top: 50%;
+  top: 45%;  /* was 50% — this moves it up */
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 3;
+  pointer-events: none;
 }
 
-.click-hint {
+
+.click-text {
   font-size: 0.75rem;
-  color: gray;
-  margin-bottom: 0.5rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.intro-text {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Input section */
+.input-and-status {
+  margin-top: -19px;
+  text-align: center;
+  z-index: 4;
 }
 
 .form-title {
-  font-size: 1.5rem;
-  font-weight: 300;
+  font-size: 24px;
   border: none;
-  border-bottom: 1px solid #888;
+  border-bottom: 2px solid #999;
   outline: none;
+  padding: 10px 20px;
   background: transparent;
-  color: #333;
   text-align: center;
+  font-weight: 400;
+  width: 300px;
 }
 
 .loading-text,
 .thank-you-text,
 .error-message {
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 1rem;
+  font-size: 18px;
+  margin-top: 20px;
+  color: #000;
 }
 
-.proceed-button,
-.back-button {
-  position: absolute;
+.dot {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Fixed bottom nav */
+.back-button,
+.proceed-button {
+  position: fixed;
   bottom: 40px;
-  font-size: 0.9rem;
   display: flex;
   align-items: center;
-  gap: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 20px;
+  background: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  z-index: 10;
 }
 
 .back-button {
@@ -119,13 +177,19 @@
 .icon-box {
   width: 32px;
   height: 32px;
-  border: 2px solid #000;
+  margin-right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: rotate(45deg);
 }
 
 .icon-box i {
-  transform: rotate(-45deg);
+  transform: rotate(-45deg); /* Rotate the icon to match the diamond */
+  font-size: 14px;
 }
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+

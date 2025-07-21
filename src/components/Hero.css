@@ -1,233 +1,103 @@
-/* === Hero Section Layout === */
 .hero {
   position: relative;
+  width: 100%;
   height: 100vh;
+  background: white;
   overflow: hidden;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
-  }
-  
-  /* This entire row will slide left or right */
-  .hero__top {
-    position: relative;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-/* === FADE OUT right side ONLY when hovering over left === */
-.hero.hover-left .hero__right,
-.hero.hover-left .diamond-border-right {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
-/* === FADE OUT left side ONLY when hovering over right === */
-.hero.hover-right .hero__left,
-.hero.hover-right .diamond-border-left {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
+/* Top branding */
+.hero__top {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
-  /* Apply movement to entire row */
-  .hero.hover-left .hero__center {
-    transform: translate(30vw, -50%);
-  }
-  
-  .hero.hover-right .hero__center {
-    transform: translate(-80vw, -50%);
-  } 
-  
-  /* Section width and alignment */
-  .hero__left,
-  .hero__right {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 0.6s ease;
-  width: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  }
-  
-  .hero__center {
+.hero__intro {
+  font-weight: normal;
+  margin-left: 8px;
+}
+
+/* Centered headline */
+.hero__center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: transform 0.8s ease-in-out;
-  z-index: 3;
   text-align: center;
-  }
-  
-  /* Typography */
-  .hero__title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 128px;
-    font-weight: 300;
-    line-height: 120px;
-    letter-spacing: -9px;
-    color: #111;
-    margin: 0;
-  }
-  
-  /* Label under diamond */
-  .hero__label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: 0 10px;
-    color:#213547;
-  }
-  
-  /* Label and icon wrapper */
-  .hover-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  
-  /* Diamond shape */
-  .diamond {
-    width: 32px;
-    height: 32px;
-    background: transparent;
-    transform: rotate(45deg);
-    border: 1px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+}
 
-  
-  /* Arrow inside diamond */
-  .arrow {
-    font-size: 12px;
-    color: #000;
-    transform: rotate(-45deg); /* rotates arrow back to upright */
-    transition: margin 0.3s ease;
-  }
+.hero__title {
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 1.1;
+}
 
-  .flipped {
-    transform: rotate(145deg);
-  }
-  
-  
-  /* Hover effect on diamond (moves arrow only) */
-  .diamond:hover .arrow.left {
-    margin-left: -3px;
-  }
-  
-  .diamond:hover .arrow.right {
-    margin-right: -3px;
-  }
-  
-  /* Bottom text */
-  .hero__bottom {
-    position: absolute;
-  bottom: 3rem; /* or any value like 5rem, 10vh, etc. */
-  left: 2rem;
-  font-size: 0.8rem;
-  max-width: 400px;
-    text-align: left;
-    align-self: flex-start;
-  }
-  
-/* Diamond border */
-.diamond-border {
-    position: absolute;
-    width: 602px;
-    height: 602px;
-    border: 1px dotted #A0A4AB;
-    border-style: dotted;
-    transform: rotate(45deg);
-    opacity: 1;
-    pointer-events: none; /* prevents mouse hover interference */
-    z-index: 0;
-    
-  }
-  
-  .diamond-border-left {
-    top: 179px;
-    left: -301px; /* exactly half width offscreen */
-  }
-  
-  .diamond-border-right {
-    top: 179px;
-    left: calc(100% - 301px); /* aligns right side to edge */
-  }
-  
-  
-  @media (max-width: 768px) {
-    /* Centered content container (like icons/diamonds) */
-    .center-content,
-    .result-center-content {
-      flex-direction: column;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 40px;
-      padding: 0 20px;
-    }
-  
-    /* Page titles like "TO START ANALYSIS" */
-    .header-text,
-    .result-header {
-      font-size: 16px;
-      text-align: center;
-    }
-  
-    /* Option icons and diamonds (scan face / gallery) */
-    .result-option,
-    .start-option {
-      transform: scale(0.9);
-      text-align: center;
-    }
-  
-    /* Adjust preview box */
-    .preview-box {
-      width: 60px;
-      height: 60px;
-    }
-  
-    /* Back button positioning */
-    .back-button-container {
-      left: 20px;
-      bottom: 20px;
-    }
-  
-    /* Nav button */
-    .nav__button {
-      font-size: 12px;
-      padding: 4px 10px;
-    }
-  
-    /* Adjust nav text spacing */
-    .nav__logo,
-    .nav__intro {
-      font-size: 12px;
-    }
-  
-    /* Tighten navbar padding */
-    .nav {
-      padding: 10px 20px;
-    }
-  
-    /* Ensure no side scrolling ever happens */
-    html,
-    body {
-      overflow-x: hidden;
-      max-width: 100vw;
-    }
-  }
-  
+/* Side button containers */
+.hero__side {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.hero__left {
+  left: 60px;
+}
+
+.hero__right {
+  right: 60px;
+}
+
+/* Arrow + Diamond setup */
+.hero__arrow-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.diamond {
+  width: 30px;
+  height: 30px;
+  border: 1px dotted black;
+  transform: rotate(45deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 10px;
+  transform: rotate(-45deg); /* re-straighten arrow inside rotated diamond */
+  color: black;
+}
+
+.arrow.right {
+  transform: rotate(135deg); /* points right */
+}
+
+.arrow.left {
+  transform: rotate(-45deg); /* points left */
+}
+
+.hero__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Bottom description text */
+.hero__bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 11px;
+  line-height: 1.4;
+  max-width: 300px;
+  color: #333;
+}
