@@ -8,6 +8,11 @@ import PreparingPage from './pages/PreparingPage.jsx';
 import Analysis from './pages/Analysis.jsx';
 import Demographics from './pages/Demographics.jsx';
 import TakePicture from './components/TakePicture.jsx';
+import LoadingPage from './components/LoadingPage.jsx';
+
+
+
+
 
 // Wrapper to conditionally render Nav
 const AppLayout = () => {
@@ -28,6 +33,7 @@ const AppLayout = () => {
         <Route path="/analysis" element={<Analysis />} />
         <Route path="/demographics" element={<Demographics />} />
         <Route path="/take-picture" element={<TakePicture />} />
+        <Route path="/loading" element={<LoadingPage />} />
       </Routes>
     </>
   );

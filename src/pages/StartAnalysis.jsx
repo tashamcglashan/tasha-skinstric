@@ -108,21 +108,18 @@ export default function StartAnalysis() {
 )}
 
 
-          {step === 3 && (
-            <div className="loading-text">
-              Processing submission<span className="dot">.</span>
-              <span className="dot">.</span>
-              <span className="dot">.</span>
-            </div>
-          )}
+{step === 3 && (
+  <div className="diamond-centered-message">
+    Processing Submission...
+  </div>
+)}
 
-          {step === 4 && (
-            <div className="thank-you-text">
-              Thank you!
-              <br />
-              Proceed to the next step!
-            </div>
-          )}
+{step === 4 && (
+  <div className="diamond-centered-message">
+    Thank You!
+  </div>
+)}
+
 
           {error && <div className="error-message">{error}</div>}
         </div>

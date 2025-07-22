@@ -27,12 +27,12 @@ export default function Result() {
         <div className="result-header">TO START ANALYSIS</div>
 
         <div className="result-center-content">
-          {/* CAMERA */}
+          {/* CAMERA OPTION */}
           <div className="result-option" onClick={handleScanFaceClick}>
-            <div className="diamond-wrapper">
-              <div className="diamond diamond-1"></div>
-              <div className="diamond diamond-2"></div>
-              <div className="diamond diamond-3"></div>
+            <div className="diamond-wrapper camera-wrapper">
+              <div className="diamond camera-diamond-1"></div>
+              <div className="diamond camera-diamond-2"></div>
+              <div className="diamond camera-diamond-3"></div>
               <MdOutlineCameraAlt className="result-icon" />
             </div>
             <p className="result-label">
@@ -40,12 +40,12 @@ export default function Result() {
             </p>
           </div>
 
-          {/* GALLERY */}
+          {/* GALLERY OPTION */}
           <div className="result-option" onClick={handleGalleryClick}>
-            <div className="diamond-wrapper">
-              <div className="diamond diamond-1"></div>
-              <div className="diamond diamond-2"></div>
-              <div className="diamond diamond-3"></div>
+            <div className="diamond-wrapper gallery-wrapper">
+              <div className="diamond gallery-diamond-1"></div>
+              <div className="diamond gallery-diamond-2"></div>
+              <div className="diamond gallery-diamond-3"></div>
               <FaRegImages className="result-icon" />
             </div>
             <p className="result-label">
@@ -54,13 +54,13 @@ export default function Result() {
           </div>
         </div>
 
-        {/* PREVIEW */}
+        {/* PREVIEW BOX */}
         <div className="result-preview">
           <p className="preview-label">Preview</p>
           <div className="preview-box"></div>
         </div>
 
-        {/* BACK */}
+        {/* BACK BUTTON */}
         <div className="back-button-container" onClick={() => navigate(-1)}>
           <div className="icon-box">
             <i className="fa-solid fa-arrow-left"></i>
@@ -68,7 +68,7 @@ export default function Result() {
           BACK
         </div>
 
-        {/* MODAL */}
+        {/* MODAL (Optional) */}
         {showCameraPrompt && (
           <div className="camera-popup">
             <div className="camera-popup-content">
@@ -81,11 +81,14 @@ export default function Result() {
                     setShowCameraPrompt(false);
                     try {
                       await navigator.mediaDevices.getUserMedia({ video: true });
-                      await fetch("https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ access: "granted" }),
-                      });
+                      await fetch(
+                        "https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseTwo",
+                        {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ access: "granted" }),
+                        }
+                      );
                       navigate("/take-picture");
                     } catch (err) {
                       console.error("Camera access denied or error:", err);

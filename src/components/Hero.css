@@ -1,103 +1,139 @@
 .hero {
   position: relative;
-  width: 100%;
   height: 100vh;
-  background: white;
   overflow: hidden;
-  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
 }
 
-/* Top branding */
 .hero__top {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-weight: bold;
-  font-size: 14px;
+  position: relative;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.hero__intro {
-  font-weight: normal;
-  margin-left: 8px;
+.hero__left,
+.hero__right {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transition: opacity 0.6s ease;
 }
 
-/* Centered headline */
 .hero__center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: transform 0.8s ease-in-out;
+  z-index: 3;
   text-align: center;
 }
 
 .hero__title {
-  font-size: 80px;
-  font-weight: 400;
-  line-height: 1.1;
+  font-family: 'Poppins', sans-serif;
+  font-size: 128px;
+  font-weight: 300;
+  line-height: 120px;
+  letter-spacing: -9px;
+  color: #111;
+  margin: 0;
 }
 
-/* Side button containers */
-.hero__side {
+/* Bottom paragraph */
+.hero__bottom {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
+  bottom: 2rem;
+  margin-top: 6rem;
+  max-width: 400px;
+  font-size: 0.8rem;
+  text-align: left;
+  align-self: flex-start;
 }
 
-.hero__left {
-  left: 60px;
-}
-
-.hero__right {
-  right: 60px;
-}
-
-/* Arrow + Diamond setup */
-.hero__arrow-button {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-}
-
-.diamond {
-  width: 30px;
-  height: 30px;
-  border: 1px dotted black;
+/* Diamond & Arrow */
+.diamond-box {
+  width: 32px;
+  height: 32px;
+  background: transparent;
   transform: rotate(45deg);
+  border: 1px solid #000;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
-.arrow {
-  font-size: 10px;
-  transform: rotate(-45deg); /* re-straighten arrow inside rotated diamond */
-  color: black;
+.arrow-icon {
+  font-size: 12px;
+  color: #000;
+  transform: rotate(-45deg);
+  transition: margin 0.3s ease;
 }
 
-.arrow.right {
-  transform: rotate(135deg); /* points right */
-}
-
-.arrow.left {
-  transform: rotate(-45deg); /* points left */
+.flipped {
+  transform: rotate(135deg);
 }
 
 .hero__label {
-  font-size: 12px;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 500;
+  margin: 0 10px;
 }
 
-/* Bottom description text */
-.hero__bottom {
+.hover-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* Dotted diamond border */
+.diamond-border {
   position: absolute;
-  bottom: 30px;
-  left: 30px;
-  font-size: 11px;
-  line-height: 1.4;
-  max-width: 300px;
-  color: #333;
+  width: 602px;
+  height: 602px;
+  border: 2px dotted #A0A4AB;
+  transform: rotate(45deg);
+  pointer-events: none;
+  opacity: 1;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.diamond-border-left {
+  left: -301px;
+}
+
+.diamond-border-right {
+  right: -301px;
+}
+
+/* Hover Effects */
+.hero.hover-left .hero__right,
+.hero.hover-left .diamond-border-right {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero.hover-right .hero__left,
+.hero.hover-right .diamond-border-left {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero.hover-left .hero__center {
+  transform: translateX(10vw) translateY(-50%);
+}
+
+.hero.hover-right .hero__center {
+  transform: translateX(-30vw) translateY(-50%);
 }

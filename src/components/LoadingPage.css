@@ -1,107 +1,110 @@
-.loading-wrapper {
-    height: 100vh;
-    width: 100vw;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-  
-  .diamond-container {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin-bottom: 30px;
-  }
-  
-  .dotted-diamond {
-    position: absolute;
-    border: 2px dotted #ccc;
+.loading-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  font-family: "Helvetica Neue", sans-serif;
+  overflow: hidden;
+}
+
+/* Diamonds + Camera Icon centered */
+.diamond-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0; /* send it behind the icon */
+}
+
+.diamond-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* Match Result page's diamond structure */
+.loading-diamond {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transform-origin: center center; /* 🧠 THIS FIXES THE OFF-CENTER ROTATION */
+  border: 2px dotted black;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.diamond-2 {
+  width: 180px;
+  height: 180px;
+  opacity: 0.6;
+  animation-delay: 0.5s;
+}
+
+.diamond-3 {
+  width: 210px;
+  height: 210px;
+  opacity: 0.3;
+  animation-delay: 1s;
+}
+
+
+/* Centered icon and text inside diamonds */
+.loading-center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+}
+
+.camera-icon {
+  font-size: 48px;
+  background: white;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 2;
+  border: 2px solid black;
+}
+
+.loading-text {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+/* Matching rotation animation */
+@keyframes rotate {
+  0% {
     transform: rotate(45deg);
-    animation: spin 6s linear infinite;
-    top: 0;
-    left: 0;
   }
-  
-  
-.outer {
-    width: 200px;
-    height: 200px;
-    animation-delay: 0s;
+  100% {
+    transform: rotate(405deg);
   }
-  
-  .middle {
-    width: 140px;
-    height: 140px;
-    top: 30px;
-    left: 30px;
-    animation-delay: 0.5s;
-  }
-  
-  .inner {
-    width: 80px;
-    height: 80px;
-    top: 60px;
-    left: 60px;
-    animation-delay: 1s;
-  } 
-  
-  .camera-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .camera-icon {
-    font-size: 24px;
-    margin-bottom: 8px;
-  }
-  
-  .camera-text {
-    font-size: 16px;
-    font-weight: 500;
-    color: #000;
-  }
-  
-  .instructions {
-    text-align: center;
-    font-size: 14px;
-  }
-  
-  .instruction-title {
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  
-  .instruction-icons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .instruction-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 14px;
-  }
-  
-  .diamond-symbol {
-    color: #000;
-  }
-  
-  /* Animation for dotted diamonds */
-  @keyframes spin {
-    0% {
-      transform: rotate(45deg);
-    }
-    100% {
-      transform: rotate(405deg);
-    }
-  }
-  
+}
+
+
+
+/* Footer at the bottom */
+.loading-footer {
+  position: absolute;
+  bottom: 60px;
+  text-align: center;
+  font-size: 12px;
+  color: black;
+  font-weight: bold;
+  width: 100%;
+}
+
+.footer-icons {
+  margin-top: 8px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
