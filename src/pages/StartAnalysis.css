@@ -1,168 +1,162 @@
+/* Fullscreen wrapper */
 .start-analysis-page {
-  height: 100vh;
+  position: relative;
   width: 100vw;
-  background: #fff;
-  position: relative;
+  height: 100vh;
+  background: white;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 
-/* Center diamonds and content as a stack */
-.diamond-wrapper {
-  position: relative;
-  width: 500px;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Title text */
+.analysis-title {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  padding-top: 20px;
+  color: black;
 }
 
-/* Diamond base style */
-/* Diamond base (keep this unchanged) */
-.diamond {
-  position: absolute;
-  border: 2px dotted #999;
-  transform: rotate(-45deg);
-  pointer-events: none;
-}
-
-.diamond-centered-message {
+.start-diamond-animation-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
-  font-size: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: black;
-  text-align: center;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-.diamond-1 {
-  animation: spin1 6s linear infinite;
-}
-.diamond-2 {
-  animation: spin2 7s linear infinite;
-}
-.diamond-3 {
-  animation: spin3 8s linear infinite;
+.start-diamond {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  opacity: 0.7;
+  border: 2px dotted black;
 }
 
+/* OUTER Diamond */
+.outer-diamond {
+  width: 500px;
+  height: 500px;
+  animation: rotate1 30s linear infinite;
+}
 
-/* Individual keyframes for more natural effect */
-@keyframes spin1 {
-  from {
+/* MIDDLE Diamond */
+.middle-diamond {
+  width: 420px;
+  height: 420px;
+  animation: rotate2 45s linear infinite;
+}
+
+/* INNER Diamond */
+.inner-diamond {
+  width: 340px;
+  height: 340px;
+  animation: rotate3 35s linear infinite;
+}
+
+/* Each diamond has its own keyframe */
+@keyframes rotate1 {
+  0% {
     transform: translate(-50%, -50%) rotate(45deg);
   }
-  to {
+  100% {
     transform: translate(-50%, -50%) rotate(405deg);
   }
 }
 
-@keyframes spin2 {
-  from {
-    transform: translate(-50%, -50%) rotate(75deg);
+@keyframes rotate2 {
+  0% {
+    transform: translate(-50%, -50%) rotate(405deg);
   }
-  to {
-    transform: translate(-50%, -50%) rotate(435deg);
-  }
-}
-
-@keyframes spin3 {
-  from {
-    transform: translate(-50%, -50%) rotate(105deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(465deg);
+  100% {
+    transform: translate(-50%, -50%) rotate(45deg);
   }
 }
 
+@keyframes rotate3 {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 
 
-/* Content inside the smallest diamond */
+/* Center content inside diamonds */
 .diamond-content {
   position: absolute;
-  top: 45%;  /* was 50% — this moves it up */
+  top: 50%;
   left: 50%;
+  z-index: 2;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 3;
-  pointer-events: none;
 }
 
-
+/* Typing prompt */
 .click-text {
-  font-size: 0.75rem;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  font-weight: 600;
+  font-size: 22px;
+  color: black;
+  transition: opacity 0.5s ease;
 }
 
-.intro-text {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #555;
+.fade-out {
+  opacity: 0;
 }
 
-/* Input section */
+.diamond-centered-message {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+/* Inputs */
 .input-and-status {
-  margin-top: -19px;
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  z-index: 4;
 }
 
 .form-title {
-  font-size: 24px;
+  font-size: 22px;
+  padding: 12px;
   border: none;
-  border-bottom: 2px solid #999;
+  border-bottom: 2px solid black;
   outline: none;
-  padding: 10px 20px;
-  background: transparent;
-  text-align: center;
-  font-weight: 400;
   width: 300px;
+  text-align: center;
 }
 
-.loading-text,
-.thank-you-text,
+/* Error */
 .error-message {
-  font-size: 18px;
-  margin-top: 20px;
-  color: #000;
+  margin-top: 10px;
+  color: red;
+  font-size: 14px;
 }
 
-.dot {
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-}
-
-/* Fixed bottom nav */
+/* Buttons */
 .back-button,
 .proceed-button {
-  position: fixed;
+  position: absolute;
   bottom: 40px;
   display: flex;
   align-items: center;
+  gap: 8px;
+  font-size: 16px;
   font-weight: bold;
-  font-size: 14px;
   padding: 10px 20px;
-  background: none;
-  border-radius: 12px;
   cursor: pointer;
   text-decoration: none;
   color: black;
-  z-index: 10;
+  background: white;
+  
+  transition: background 0.3s ease;
 }
 
 .back-button {
@@ -173,22 +167,16 @@
   right: 40px;
 }
 
+.back-button:hover,
+.proceed-button:hover {
+  background: #f0f0f0;
+}
+
 .icon-box {
-  width: 32px;
-  height: 32px;
-  margin-right: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 18px;
 }
 
-.icon-box i {
-  transform: rotate(-45deg); /* Rotate the icon to match the diamond */
-  font-size: 14px;
+.nav__logo{
+  font-family: 'Poppins', sans-serif;
+  color: black;
 }
-
-.fade-out {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-

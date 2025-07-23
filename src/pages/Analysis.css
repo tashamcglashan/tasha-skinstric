@@ -6,28 +6,31 @@
     position: relative;
     overflow: hidden;
   }
+
   
   /* Header section */
   .analysis-header-container {
     position: absolute;
-    top: 40px;
-    left: 40px; /* ⬅️ Align under the logo */
-    text-align: left;
-    z-index: 3;
+    top: 70px;
+    left: 40px;
   }
   
-  
   .analysis-title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+    left: 32px;
   }
   
   .analysis-subtitle {
-    font-size: 14px;
-    color: #444;
+    font-size: 13px;
+    font-weight: 500;
+    color: #555;
     line-height: 1.4;
+    margin-top: 99px;
+    padding-left:32px;
   }
+  
   
   /* Diamond layout wrapper */
   .diamond-layout-wrapper {
@@ -127,10 +130,10 @@
     bottom: 20px;
     left: 0;
     right: 0;
-    padding: 0 40px;
     display: flex;
     justify-content: space-between;
-    z-index: 4;
+    padding: 0 40px;
+    z-index: 10;
   }
   
   .back-button,
@@ -138,12 +141,14 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    color: #1a1a1a;
   }
   
-  .icon-box {
-    width: 40px;
-    height: 40px;
+  .back-button .icon-box,
+  .proceed-button .icon-box {
+    width: 28px;
+    height: 28px;
     border: 2px solid #000;
     transform: rotate(45deg);
     display: flex;
@@ -152,3 +157,37 @@
     margin-right: 8px;
   }
   
+  .back-button .icon-box i,
+  .proceed-button .icon-box i {
+    transform: rotate(-45deg);
+    font-size: 14px;
+  }
+  
+  /* Optional: remove hover color */
+  .back-button:hover,
+  .proceed-button:hover {
+    background-color: transparent;
+    color: #1a1a1a;
+  }
+  
+  .analysis-bottom-buttons .back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: black;
+    background: white;
+    
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 10;
+    cursor: pointer;
+  }
+  
+
+  /* Icon-box hover grow effect */
+.back-button:hover .icon-box,
+.proceed-button:hover .icon-box {
+  transform: rotate(45deg) scale(1.15); /* Slightly bigger */
+  transition: transform 0.2s ease;
+}

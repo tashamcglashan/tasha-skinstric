@@ -14,6 +14,7 @@ import LoadingPage from './components/LoadingPage.jsx';
 
 
 
+
 // Wrapper to conditionally render Nav
 const AppLayout = () => {
   const location = useLocation();
@@ -34,6 +35,8 @@ const AppLayout = () => {
         <Route path="/demographics" element={<Demographics />} />
         <Route path="/take-picture" element={<TakePicture />} />
         <Route path="/loading" element={<LoadingPage />} />
+        
+
       </Routes>
     </>
   );

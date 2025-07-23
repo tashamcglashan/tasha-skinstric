@@ -1,5 +1,5 @@
 /* === PAGE === */
-.start-analysis-page {
+.preparing-page {
   width: 100vw;
   height: 100vh;
   position: relative;
@@ -54,31 +54,36 @@
 .analysis-diamond.outer {
   width: 250px;
   height: 250px;
-  animation: spin 6s linear infinite;
-  animation-delay: 0s;
+  animation: spinOuter 6s linear infinite;
+  
 }
 
 .analysis-diamond.middle {
   width: 180px;
   height: 180px;
-  animation: spin 7s linear infinite;
-  animation-delay: 0.4s;
+  animation: spinMiddle 7s linear infinite;
 }
 
 .analysis-diamond.inner {
   width: 110px;
   height: 110px;
-  animation: spin 8s linear infinite;
-  animation-delay: 0.8s;
+  animation: spinInner 8s linear infinite;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(45deg);
-  }
-  100% {
-    transform: rotate(405deg);
-  }
+/* === UNIQUE KEYFRAMES FOR EACH === */
+@keyframes spinOuter {
+  0% { transform: rotate(45deg); }
+  100% { transform: rotate(405deg); }
+}
+
+@keyframes spinMiddle {
+  0% { transform: rotate(45deg); }
+  100% { transform: rotate(405deg); }
+}
+
+@keyframes spinInner {
+  0% { transform: rotate(45deg); }
+  100% { transform: rotate(405deg); }
 }
 
 /* === TEXT & INPUT INSIDE DIAMONDS === */

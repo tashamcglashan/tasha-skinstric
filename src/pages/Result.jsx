@@ -1,39 +1,84 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaRegImages } from "react-icons/fa";
-import { MdOutlineCameraAlt } from "react-icons/md";
+import React, { useState, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { MdOutlineCameraAlt, MdPhotoLibrary } from "react-icons/md";
 import Navbar from "../components/Nav";
 import "./Result.css";
 
 export default function Result() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const fileInputRef = useRef(null);
+  const [preview, setPreview] = useState(null);
   const [showCameraPrompt, setShowCameraPrompt] = useState(false);
+  const [isLoadingCamera, setIsLoadingCamera] = useState(false);
 
+  // ✅ GALLERY LOGIC
   const handleGalleryClick = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-    input.click();
+    fileInputRef.current.click();
   };
 
+  const handleImageSelected = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setPreview(imageUrl);
+
+      // Navigate to PreparingPage after a short delay
+      setTimeout(() => {
+        navigate("/preparing");
+      }, 1000);
+    }
+  };
+
+  // ✅ CAMERA FLOW
   const handleScanFaceClick = () => {
     setShowCameraPrompt(true);
   };
+
+  // ✅ LOADING SCREEN
+  if (isLoadingCamera) {
+    return (
+      <>
+        <Navbar />
+        <div className="result-loading-wrapper">
+          <div className="camera-icon-container">
+            <MdOutlineCameraAlt className="camera-loading-icon" />
+            <div className="loading-diamond diamond-1"></div>
+            <div className="loading-diamond diamond-2"></div>
+            <div className="loading-diamond diamond-3"></div>
+          </div>
+          <h1 className="camera-loading-text">Setting up Camera...</h1>
+          <div className="camera-instructions">
+            TO GET BETTER RESULTS MAKE SURE TO HAVE
+            <div className="camera-tips">
+              <span>◆ NEUTRAL EXPRESSION</span>
+              <span>◆ FRONTAL POSE</span>
+              <span>◆ ADEQUATE LIGHTING</span>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
       <Navbar />
       <div className="result-page">
-        <div className="result-header">TO START ANALYSIS</div>
+        {/* HEADER */}
+        <div className="result-header-wrapper">
+          <div className="result-header">TO START ANALYSIS</div>
+        </div>
 
+        {/* CENTER OPTIONS */}
         <div className="result-center-content">
           {/* CAMERA OPTION */}
           <div className="result-option" onClick={handleScanFaceClick}>
+            <MdOutlineCameraAlt className="result-icon-static" />
             <div className="diamond-wrapper camera-wrapper">
               <div className="diamond camera-diamond-1"></div>
               <div className="diamond camera-diamond-2"></div>
               <div className="diamond camera-diamond-3"></div>
-              <MdOutlineCameraAlt className="result-icon" />
             </div>
             <p className="result-label">
               ALLOW A.I. <br /> TO SCAN YOUR FACE
@@ -42,33 +87,49 @@ export default function Result() {
 
           {/* GALLERY OPTION */}
           <div className="result-option" onClick={handleGalleryClick}>
+            <MdPhotoLibrary className="result-icon-static" />
             <div className="diamond-wrapper gallery-wrapper">
               <div className="diamond gallery-diamond-1"></div>
               <div className="diamond gallery-diamond-2"></div>
               <div className="diamond gallery-diamond-3"></div>
-              <FaRegImages className="result-icon" />
             </div>
             <p className="result-label">
               ALLOW A.I. <br /> ACCESS GALLERY
             </p>
           </div>
+
+          {/* Hidden File Input for GALLERY */}
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleImageSelected}
+          />
         </div>
 
-        {/* PREVIEW BOX */}
-        <div className="result-preview">
-          <p className="preview-label">Preview</p>
-          <div className="preview-box"></div>
-        </div>
+        {/* PREVIEW IMAGE */}
+        {preview && (
+          <div className="result-preview">
+            <p className="preview-label">Preview</p>
+            <div className="preview-box">
+              <img src={preview} alt="Selected" className="preview-image" />
+            </div>
+          </div>
+        )}
 
         {/* BACK BUTTON */}
-        <div className="back-button-container" onClick={() => navigate(-1)}>
+        <div
+          className="back-button-container"
+          onClick={() => navigate("/start-analysis")}
+        >
           <div className="icon-box">
             <i className="fa-solid fa-arrow-left"></i>
           </div>
           BACK
         </div>
 
-        {/* MODAL (Optional) */}
+        {/* CAMERA PERMISSION MODAL */}
         {showCameraPrompt && (
           <div className="camera-popup">
             <div className="camera-popup-content">
@@ -79,6 +140,7 @@ export default function Result() {
                 <button
                   onClick={async () => {
                     setShowCameraPrompt(false);
+                    setIsLoadingCamera(true);
                     try {
                       await navigator.mediaDevices.getUserMedia({ video: true });
                       await fetch(
@@ -89,9 +151,12 @@ export default function Result() {
                           body: JSON.stringify({ access: "granted" }),
                         }
                       );
-                      navigate("/take-picture");
+                      setTimeout(() => {
+                        navigate("/take-picture");
+                      }, 2500);
                     } catch (err) {
                       console.error("Camera access denied or error:", err);
+                      setIsLoadingCamera(false);
                     }
                   }}
                 >

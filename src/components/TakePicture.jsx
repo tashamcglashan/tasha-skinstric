@@ -13,7 +13,7 @@ export default function TakePicture() {
 
   useEffect(() => {
     let mediaStream;
-  
+
     const startCamera = async () => {
       try {
         mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -25,11 +25,10 @@ export default function TakePicture() {
         console.error("Error accessing webcam:", err);
       }
     };
-  
+
     startCamera();
-  
+
     return () => {
-      // ✅ Stop stream and clear video srcObject
       if (videoRef.current) {
         videoRef.current.srcObject = null;
       }
@@ -38,7 +37,7 @@ export default function TakePicture() {
       }
     };
   }, []);
-  
+
   const handleCapture = () => {
     const canvas = canvasRef.current;
     const video = videoRef.current;
@@ -57,47 +56,37 @@ export default function TakePicture() {
   };
 
   const handleProceed = () => {
-    navigate("/analysis");
+    navigate("/result");
   };
 
   return (
     <div className="camera-page">
-      {/* Top Left Branding */}
-      {/* Top Left Logo */}
-<div className="nav">
- 
-  
-</div>
-
-
-      {/* Preview Image Top Right */}
-      {capturedImage && (
-        <div className="preview-container">
-          <p className="preview-label">Preview</p>
-          <img src={capturedImage} alt="Preview" className="preview-image" />
-        </div>
-      )}
-
-      {/* Main Camera Area */}
+      {/* CAMERA VIEW */}
       <div className="camera-container">
-        {!captured ? (
-          <video ref={videoRef} autoPlay playsInline muted className="camera-video" />
-        ) : (
-          <canvas ref={canvasRef} className="captured-image" />
+        <video
+          ref={videoRef}
+          autoPlay
+          playsInline
+          muted
+          className={`camera-video ${captured ? "hidden" : ""}`}
+        />
+        {captured && (
+          <img
+            src={capturedImage}
+            alt="Captured"
+            className="captured-image"
+          />
         )}
       </div>
 
-      {/* Diamonds + Great Shot! */}
+      {/* GREAT SHOT MESSAGE */}
       {showGreatShot && (
         <div className="preparing-wrapper">
-          <div className="analysis-diamond"></div>
-          <div className="analysis-diamond delay"></div>
-          <div className="analysis-diamond delay2"></div>
           <div className="great-shot">GREAT SHOT!</div>
         </div>
       )}
 
-      {/* Bottom Instructions */}
+      {/* INSTRUCTIONS */}
       <div className="camera-instructions">
         TO GET BETTER RESULTS MAKE SURE TO HAVE
         <div className="camera-tips">
@@ -107,32 +96,33 @@ export default function TakePicture() {
         </div>
       </div>
 
-      {/* Take Picture Button */}
+      {/* TAKE PICTURE */}
       {!captured && (
         <div className="take-picture-button" onClick={handleCapture}>
           TAKE PICTURE <i className="fa-solid fa-camera"></i>
         </div>
       )}
 
-      {/* Proceed Button */}
-      {captured && (
-        <button className="proceed-button" onClick={handleProceed}>
-          <div className="icon-box">
+      {/* BACK BUTTON — always visible */}
+      <Link to="/result" className="back-button-white">
+        <div className="icon-box-white">
+          <i className="fa-solid fa-arrow-left"></i>
+        </div>
+        BACK
+      </Link>
+
+      {/* PROCEED BUTTON — only after great shot */}
+      {showGreatShot && (
+        <button className="proceed-button-white" onClick={handleProceed}>
+          PROCEED
+          <div className="icon-box-white">
             <i className="fa-solid fa-arrow-right"></i>
           </div>
-          PROCEED
         </button>
       )}
 
-      {/* Back Button */}
-      {captured && (
-        <Link to="/" className="back-button">
-          <div className="icon-box">
-            <i className="fa-solid fa-arrow-left"></i>
-          </div>
-          BACK
-        </Link>
-      )}
+      {/* HIDDEN CANVAS */}
+      <canvas ref={canvasRef} style={{ display: "none" }} />
     </div>
   );
 }

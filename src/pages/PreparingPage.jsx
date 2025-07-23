@@ -14,11 +14,24 @@ export default function PreparingPage() {
   }, [navigate]);
 
   return (
-    <div className="preparing-wrapper">
-      <div className="icon-diamond-wrapper">
-        <div className="analysis-diamond"></div>
-        <div className="analysis-diamond delay"></div>
-        <p className="preparing-text">PREPARING YOUR ANALYSIS…</p>
+    <div className="preparing-page">
+      <div className="center-wrapper">
+        <div className="diamond-wrapper">
+          <div className="diamond-stack">
+            <div className="analysis-diamond outer"></div>
+            <div className="analysis-diamond middle"></div>
+            <div className="analysis-diamond inner"></div>
+
+            <div className="center-content-inside">
+              <p className="loading-text">
+                PREPARING YOUR ANALYSIS
+                <span className="dot">.</span>
+                <span className="dot">.</span>
+                <span className="dot">.</span>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

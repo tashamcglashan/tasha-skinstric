@@ -18,16 +18,27 @@
   }
   
   .nav__logo {
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
   }
-  
+  .nav__logo:hover {
+    opacity: 0.8;
+  }
+
+
   .nav__intro {
     font-weight: 400;
     font-size: 0.85rem;
     color: #555;
   }
+
+  
+
   
   .nav__button {
     background-color: black;
@@ -39,5 +50,4 @@
     text-transform: uppercase;
     
   }
-  
   

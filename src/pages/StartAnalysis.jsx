@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import "./StartAnalysis.css";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Nav";
+import {useLocation} from "react-router-dom";
 
 export default function StartAnalysis() {
   const [step, setStep] = useState(1);
   const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
+  const [userLocation, setUserLocation] = useState("");
   const [error, setError] = useState("");
   const [fadeOutClick, setFadeOutClick] = useState(false);
   const navigate = useNavigate();
-
   const isValidString = (value) => /^[A-Za-z\s]+$/.test(value.trim());
-
+  const location = useLocation();
   const handleKeyDown = async (e) => {
     if (e.key === "Enter") {
       setError("");
@@ -24,24 +24,22 @@ export default function StartAnalysis() {
         }
         setStep(2);
       } else if (step === 2) {
-        if (!isValidString(location)) {
+        if (!isValidString(userLocation)) {
           setError("Please enter a valid location (letters only).");
           return;
         }
 
-        setFadeOutClick(true); // trigger fade out effect
+        setFadeOutClick(true);
+        setStep(3);
 
-        setStep(3); // Show loading
-
-        // Store to localStorage
         localStorage.setItem("name", name);
-        localStorage.setItem("location", location);
+        localStorage.setItem("userLocation", userLocation);
 
         try {
           await fetch("https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseOne", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, location }),
+            body: JSON.stringify({ name, userLocation }),
           });
 
           setTimeout(() => {
@@ -63,22 +61,23 @@ export default function StartAnalysis() {
       <div className="start-analysis-page">
         <div className="analysis-title">TO START ANALYSIS</div>
 
-        {/* Rotating Diamonds */}
-        <div className="diamond-wrapper">
-          <div className="diamond diamond-1"></div>
-          <div className="diamond diamond-2"></div>
-          <div className="diamond diamond-3"></div>
-
-          <div className="diamond-content">
-            {(!name || (step === 2 && !location) || (step === 2 && !fadeOutClick)) && (
-              <p className={`click-text ${fadeOutClick ? "fade-out" : ""}`}>
-                CLICK TO TYPE
-              </p>
-            )}
-          </div>
+        <div className="start-diamond-animation-wrapper">
+          <div className="start-diamond outer-diamond"></div>
+          <div className="start-diamond middle-diamond"></div>
+          <div className="start-diamond inner-diamond"></div>
         </div>
 
-        {/* Input & Status */}
+        <div className="diamond-content">
+          {(!name || (step === 2 && !userLocation) || (step === 2 && !fadeOutClick)) && (
+            <p className={`click-text ${fadeOutClick ? "fade-out" : ""}`}>
+              CLICK TO TYPE
+            </p>
+          )}
+
+          {step === 3 && <div className="diamond-centered-message">Processing Submission...</div>}
+          {step === 4 && <div className="diamond-centered-message">Thank You!</div>}
+        </div>
+
         <div className="input-and-status">
           {step === 1 && (
             <input
@@ -91,40 +90,25 @@ export default function StartAnalysis() {
             />
           )}
 
-{step === 2 && (
-  <input
-    className="form-title"
-    autoFocus
-    value={location}
-    onChange={(e) => {
-      setLocation(e.target.value);
-      if (e.target.value.trim().length > 0) {
-        setFadeOutClick(true); // ✅ trigger fade as soon as user types
-      }
-    }}
-    placeholder="Your City"
-    onKeyDown={handleKeyDown}
-  />
-)}
-
-
-{step === 3 && (
-  <div className="diamond-centered-message">
-    Processing Submission...
-  </div>
-)}
-
-{step === 4 && (
-  <div className="diamond-centered-message">
-    Thank You!
-  </div>
-)}
-
+          {step === 2 && (
+            <input
+              className="form-title"
+              autoFocus
+              value={userLocation}
+              onChange={(e) => {
+                setUserLocation(e.target.value);
+                if (e.target.value.trim().length > 0) {
+                  setFadeOutClick(true);
+                }
+              }}
+              placeholder="Your City"
+              onKeyDown={handleKeyDown}
+            />
+          )}
 
           {error && <div className="error-message">{error}</div>}
         </div>
 
-        {/* Bottom Buttons */}
         <Link to="/" className="back-button">
           <div className="icon-box">
             <i className="fa-solid fa-arrow-left"></i>
@@ -133,10 +117,7 @@ export default function StartAnalysis() {
         </Link>
 
         {step === 4 && (
-          <button
-            className="proceed-button"
-            onClick={() => navigate("/result")}
-          >
+          <button className="proceed-button" onClick={() => navigate("/result")}>
             <div className="icon-box">
               <i className="fa-solid fa-arrow-right"></i>
             </div>
