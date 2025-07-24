@@ -20,7 +20,7 @@
   .nav__logo {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     color: #1a1b1c;
     cursor: pointer;
     text-decoration: none;
@@ -33,7 +33,7 @@
 
   .nav__intro {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     color: #555;
   }
 
@@ -46,7 +46,7 @@
     padding: 6px 12px;       /* smaller height/width */
     border: none;
     border-radius: none;
-    font-size: 10px;         /* already small — looks clean */
+    font-size: 12px;         /* already small — looks clean */
     font-weight: 500;
     text-transform: uppercase;
     cursor: pointer;         /* makes it obvious it's clickable */
