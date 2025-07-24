@@ -104,7 +104,8 @@ export default function TakePicture() {
       )}
 
       {/* BACK BUTTON — always visible */}
-      <Link to="/result" className="back-button-white">
+      <Link to="/analysis
+      " className="back-button-white">
         <div className="icon-box-white">
           <i className="fa-solid fa-arrow-left"></i>
         </div>
