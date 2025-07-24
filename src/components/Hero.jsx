@@ -1,4 +1,3 @@
-// Hero.jsx
 import React, { useState } from 'react';
 import './Hero.css';
 import { FaPlay } from 'react-icons/fa';

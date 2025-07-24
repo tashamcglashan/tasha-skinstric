@@ -74,31 +74,51 @@ export default function Result() {
         <div className="result-center-content">
           {/* CAMERA OPTION */}
           <div className="result-option" onClick={handleScanFaceClick}>
-            <MdOutlineCameraAlt className="result-icon-static" />
-            <div className="diamond-wrapper camera-wrapper">
+            <div className="diamond-icon-wrapper">
+              <MdOutlineCameraAlt className="result-icon-static" />
               <div className="diamond camera-diamond-1"></div>
               <div className="diamond camera-diamond-2"></div>
               <div className="diamond camera-diamond-3"></div>
             </div>
-            <p className="result-label">
-              ALLOW A.I. <br /> TO SCAN YOUR FACE
-            </p>
+
+            {/* Angled label (top right of camera) */}
+            <div className="result-label-angled camera-label">
+              <div className="angled-line">
+                <div className="line"></div>
+                <div className="dot"></div>
+              </div>
+              <p>
+                ALLOW A.I.
+                <br />
+                TO SCAN YOUR FACE
+              </p>
+            </div>
           </div>
 
           {/* GALLERY OPTION */}
           <div className="result-option" onClick={handleGalleryClick}>
-            <MdPhotoLibrary className="result-icon-static" />
-            <div className="diamond-wrapper gallery-wrapper">
+            <div className="diamond-icon-wrapper">
+              <MdPhotoLibrary className="result-icon-static" />
               <div className="diamond gallery-diamond-1"></div>
               <div className="diamond gallery-diamond-2"></div>
               <div className="diamond gallery-diamond-3"></div>
             </div>
-            <p className="result-label">
-              ALLOW A.I. <br /> ACCESS GALLERY
-            </p>
+
+            {/* Angled label (bottom left of gallery) */}
+            <div className="result-label-angled gallery-label">
+              <div className="angled-line">
+                <div className="line reverse"></div>
+                <div className="dot"></div>
+              </div>
+              <p>
+                ALLOW A.I.
+                <br />
+                ACCESS GALLERY
+              </p>
+            </div>
           </div>
 
-          {/* Hidden File Input for GALLERY */}
+          {/* Hidden file input for gallery */}
           <input
             type="file"
             accept="image/*"

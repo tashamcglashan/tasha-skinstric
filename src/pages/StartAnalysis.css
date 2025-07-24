@@ -9,6 +9,7 @@
 
 /* Title text */
 .analysis-title {
+  left: 62px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
@@ -99,10 +100,15 @@
 
 /* Typing prompt */
 .click-text {
-  font-size: 22px;
-  color: black;
+  font-size: 12px;
+  font-weight: 500;
+  color: #a0a4ab; /* light gray */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
   transition: opacity 0.5s ease;
 }
+
 
 .fade-out {
   opacity: 0;
@@ -117,21 +123,26 @@
 /* Inputs */
 .input-and-status {
   position: absolute;
-  top: 72%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 55%;                /* Center vertically */
+  left: 50%;               /* Center horizontally */
+  transform: translate(-50%, -50%); /* Full center */
+  text-align: center;
+  z-index: 3;
+}
+
+/* Update this for better styling */
+.form-title {
+  font:inherit;
+  font-weight: 400;
+  color: #6e6e6e; /* medium gray */
+  border: none;
+  border-bottom: 2px solid #6e6e6e;
+  outline: none;
+  width: 320px;
+  padding: 8px;
   text-align: center;
 }
 
-.form-title {
-  font-size: 22px;
-  padding: 12px;
-  border: none;
-  border-bottom: 2px solid black;
-  outline: none;
-  width: 300px;
-  text-align: center;
-}
 
 /* Error */
 .error-message {

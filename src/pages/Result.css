@@ -1,5 +1,4 @@
-/* Result.css */
-
+/* PAGE LAYOUT */
 .result-page {
   position: relative;
   width: 100vw;
@@ -9,19 +8,20 @@
   overflow: hidden;
 }
 
+/* HEADER */
 .result-header-wrapper {
   position: absolute;
   top: 40px;
-  left: 40px;
+  left: 65px;
 }
-
 .result-header {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   color: black;
 }
 
+/* CENTER ICON OPTIONS */
 .result-center-content {
   position: absolute;
   top: 50%;
@@ -37,18 +37,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
   width: 200px;
   height: 200px;
+  cursor: pointer;
 }
 
+/* ICON STYLE */
 .result-icon-static {
-  font-size: 64px;
-  margin-bottom: 12px;
-  z-index: 2;
+  font-size: 75px;
   color: black;
+  z-index: 2;
 }
 
+/* ICON LABEL BELOW */
 .result-label {
   font-size: 14px;
   text-align: center;
@@ -58,160 +59,294 @@
   color: #222;
 }
 
-.diamond-wrapper {
-  position: absolute;
+/* -------------------------
+   🔷 DOTTED DIAMOND WRAPPER
+-------------------------- */
+.diamond-icon-wrapper {
+  position: relative;
   width: 200px;
   height: 200px;
-  top: 0;
-  left: 0;
-  transform: rotate(45deg);
-  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .diamond {
   position: absolute;
-  width: 100%;
-  height: 100%;
   border: 2px dotted #999;
-  top: 0;
-  left: 0;
+  transform: rotate(45deg);
   transform-origin: center center;
   box-sizing: border-box;
+  top: 0;
+  left: 0;
 }
+
+.loading-diamond {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px dotted black;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.diamond-1 {
+  width: 220px;
+  height: 220px;
+  animation: rotateDiamond1 30s linear infinite;
+}
+.diamond-2 {
+  width: 180px;
+  height: 180px;
+  animation: rotateDiamond2 50s linear infinite;
+}
+.diamond-3 {
+  width: 140px;
+  height: 140px;
+  animation: rotateDiamond3 70s linear infinite;
+}
+
+@keyframes rotateDiamond1 {
+  0% { transform: translate(-50%, -50%) rotate(45deg); }
+  100% { transform: translate(-50%, -50%) rotate(405deg); }
+}
+@keyframes rotateDiamond2 {
+  0% { transform: translate(-50%, -50%) rotate(405deg); }
+  100% { transform: translate(-50%, -50%) rotate(45deg); }
+}
+@keyframes rotateDiamond3 {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Popup modal */
+
+/* Fullscreen overlay */
+.camera-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* on top of everything */
+}
+
+/* Modal box */
+.camera-popup-content {
+  background: white;
+  padding: 24px 32px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 10000;
+}
+
+/* Modal text */
+.camera-popup-content p {
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 12px;
+}
+
+/* Divider line */
+.popup-line {
+  height: 1px;
+  background-color: #ccc;
+  margin: 12px 0;
+}
+
+/* Button layout */
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Button style */
+.popup-actions button {
+  flex: 1;
+  padding: 10px 0;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.popup-actions button:hover {
+  background-color: #222;
+}
+
+
+
 /* CAMERA DIAMONDS */
 .camera-diamond-1 {
   width: 200px;
   height: 200px;
   animation: rotateCam1 30s linear infinite;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 2px dotted #999;
-  transform-origin: center center;
-  box-sizing: border-box;
 }
-
 .camera-diamond-2 {
   width: 170px;
   height: 170px;
-  animation: rotateCam2 40s linear infinite;
-  position: absolute;
   top: 15px;
   left: 15px;
-  border: 2px dotted #999;
-  transform-origin: center center;
-  box-sizing: border-box;
+  animation: rotateCam2 40s linear infinite;
 }
-
 .camera-diamond-3 {
   width: 140px;
   height: 140px;
-  animation: rotateCam3 60s linear infinite;
-  position: absolute;
   top: 30px;
   left: 30px;
-  border: 2px dotted #999;
-  transform-origin: center center;
-  box-sizing: border-box;
+  animation: rotateCam3 60s linear infinite;
 }
 
 /* GALLERY DIAMONDS */
 .gallery-diamond-1 {
+  width: 200px;
+  height: 200px;
   animation: rotateGal1 30s linear infinite;
 }
 .gallery-diamond-2 {
   width: 180px;
   height: 180px;
+  top: 10px;
+  left: 10px;
   animation: rotateGal2 40s linear infinite;
 }
 .gallery-diamond-3 {
   width: 160px;
   height: 160px;
+  top: 20px;
+  left: 20px;
   animation: rotateGal3 60s linear infinite;
 }
 
-/* CAMERA KEYFRAMES */
+.camera-loading-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: black;
+  padding: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  text-align: center;
+}
+
+
+
+/* ANIMATIONS */
 @keyframes rotateCam1 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 @keyframes rotateCam2 {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
 }
 @keyframes rotateCam3 {
-  0% {
-    transform: rotate(45deg);
-  }
-  100% {
-    transform: rotate(405deg);
-  }
+  0% { transform: rotate(45deg); }
+  100% { transform: rotate(405deg); }
 }
-
-/* GALLERY KEYFRAMES */
 @keyframes rotateGal1 {
-  0% {
-    transform: rotate(405deg);
-  }
-  100% {
-    transform: rotate(45deg);
-  }
+  0% { transform: rotate(405deg); }
+  100% { transform: rotate(45deg); }
 }
 @keyframes rotateGal2 {
-  0% {
-    transform: rotate(90deg);
-  }
-  100% {
-    transform: rotate(450deg);
-  }
+  0% { transform: rotate(90deg); }
+  100% { transform: rotate(450deg); }
 }
 @keyframes rotateGal3 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-.result-preview {
+/* ----------------------------
+   🠖 ANGLED LABELS + DOTS
+----------------------------- */
+.result-label-angled {
   position: absolute;
-  top: 40px;
-  right: 40px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  z-index: 10;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  line-height: 1.2;
+  text-align: left;
+  z-index: 5;
+  white-space: nowrap;
 }
 
-.preview-label {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: black !important;
-  padding: 2px 6px;
-  border-radius: 4px;
+.angled-line {
+  display: flex;
+  align-items: center;
+  margin-right: 6px;
 }
 
-.preview-box {
+/* Left side (Camera) Line */
+.angled-line .line {
   width: 60px;
-  height: 60px;
-  border: 1px solid black;
-  background-color: white;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  height: 1px;
+  background-color: black;
+  transform: rotate(-30deg);
+  transform-origin: right;
 }
 
 
 
+/* Right side (Gallery) Line */
+.angled-line .line.reverse {
+  width: 60px;
+  height: 1px;
+  background-color: black;
+  transform: rotate(135deg);         /* points up + left toward icon */
+  transform-origin: right center;
+  margin-top: -10px;                  /* tweak vertically */
+  margin-right: -8px;           
+  
+}
 
+/* Blinking Dot */
+.angled-line .dot {
+  width: 5px;
+  height: 5px;
+  background-color: black;
+  border-radius: 50%;
+  margin-left: 6px;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* POSITIONING EACH LABEL */
+.camera-label {
+  top: 10px;
+  right: -120px;
+}
+
+.gallery-label {
+  bottom: -10px;
+  left: -120px;
+}
+
+/* ----------------------------
+   🔙 BACK BUTTON STYLING
+----------------------------- */
 .back-button-container {
   position: absolute;
   bottom: 40px;
@@ -239,190 +374,7 @@
   font-size: 14px;
 }
 
-.camera-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.camera-popup-content {
-  background: #fff;
-  padding: 20px 30px;
-  border-radius: 8px;
-  text-align: center;
-  width: 320px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.camera-popup-content p {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-
-.popup-line {
-  height: 1px;
-  background: #ccc;
-  margin: 10px 0;
-}
-
-.popup-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.popup-actions button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  background-color: #000;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.popup-actions button:hover {
-  background-color: #333;
-}
-
-.result-loading-wrapper {
-  height: 100vh;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.camera-loading-text {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-}
-
-
-.result-loading-wrapper {
-  height: 100vh;
-  width: 100vw;
-  background: white;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
-}
-
-.camera-icon-container {
-  position: relative;
-  width: 250px;
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-.camera-loading-icon {
-  font-size: 60px;
-  color: black;
-  z-index: 2;
-  position: relative;
-}
-
-/* ROTATING DIAMONDS */
-.loading-diamond {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 2px dotted black;
-  transform-origin: center;
-  transform: translate(-50%, -50%) rotate(45deg);
-  opacity: 0.5;
-}
-
-.diamond-1 {
-  width: 220px;
-  height: 220px;
-  animation: rotateDiamond1 30s linear infinite;
-}
-.diamond-2 {
-  width: 180px;
-  height: 180px;
-  animation: rotateDiamond2 50s linear infinite;
-}
-.diamond-3 {
-  width: 140px;
-  height: 140px;
-  animation: rotateDiamond3 70s linear infinite;
-}
-
-/* KEYFRAMES */
-@keyframes rotateDiamond1 {
-  0% {
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(405deg);
-  }
-}
-@keyframes rotateDiamond2 {
-  0% {
-    transform: translate(-50%, -50%) rotate(405deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-}
-@keyframes rotateDiamond3 {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-.camera-loading-text {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: black;
-  font-size: 1.5rem;
-  padding: 0.5rem;
-}
-
-.camera-instructions {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-top: 30px;
-  color: #333;
-  max-width: 400px;
-  line-height: 1.5;
-}
-
-.camera-tips {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 10px;
-  font-weight: normal;
-}
-
-/* Icon-box hover grow effect */
-.back-button-container:hover .icon-box,
-.proceed-button:hover .icon-box {
+.back-button-container:hover .icon-box {
   transform: rotate(45deg) scale(1.15);
   transition: transform 0.2s ease;
 }
