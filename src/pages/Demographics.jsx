@@ -65,7 +65,7 @@ const Demographics = () => {
           <span className="nav-logo">Skinstric</span>
           <span className="nav-intro">[ INTRO ]</span>
         </div>
-        <button className="enter-code-button">ENTER CODE</button>
+        <button className=".demographics-page enter-code-button">ENTER CODE</button>
       </div>
 
       {/* Section Title */}
