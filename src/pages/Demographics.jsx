@@ -77,10 +77,11 @@ const Demographics = () => {
 
       {/* Back Button */}
       <Link to="/analysis" className="back-button-wrapper">
-        <div className="back-button-diamond">
-          <span className="back-arrow">←</span>
-        </div>
-      </Link>
+  <div className="back-button-diamond">
+    <span className="back-arrow">←</span>
+  </div>
+  <span className="back-text">BACK</span>
+</Link>
 
       {/* Main Wrapper */}
       <div className="demographics-wrapper">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Hero.css';
+import Nav from './Nav';
 import { FaPlay } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import "./CameraModal.css";

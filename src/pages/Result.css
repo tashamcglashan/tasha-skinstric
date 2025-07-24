@@ -347,7 +347,9 @@
 /* ----------------------------
    🔙 BACK BUTTON STYLING
 ----------------------------- */
+
 .back-button-container {
+  font-size: 11px;
   position: absolute;
   bottom: 40px;
   left: 40px;

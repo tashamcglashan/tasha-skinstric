@@ -16,10 +16,10 @@
   }
   
   .analysis-title {
-    font-size: 20px;
+    font-size: 9px;
     font-weight: 700;
     color: black;
-    left: 32px;
+    left: 62px;
   }
   
   .analysis-subtitle {
@@ -135,9 +135,12 @@
     padding: 0 40px;
     z-index: 10;
   }
+
+
   
   .back-button,
   .proceed-button {
+    font-size: 11px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -160,7 +163,7 @@
   .back-button .icon-box i,
   .proceed-button .icon-box i {
     transform: rotate(-45deg);
-    font-size: 14px;
+    font-size: 11px;
   }
   
   /* Optional: remove hover color */

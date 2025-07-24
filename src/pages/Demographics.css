@@ -60,7 +60,7 @@
 }
 
 .demographics-page .nav-analysis {
-  font-size: 0.9rem;
+  font-size: 11px;;
   font-weight: bold;
   text-transform: uppercase;
   color: #111;
@@ -76,7 +76,7 @@
 }
 
 .demographics-page .nav-subtitle {
-  font-size: 1rem;
+  font-size: 12px;
   color: #777;
   text-transform: uppercase;
 }
@@ -264,6 +264,20 @@
   font-size: 1.2rem;
   font-weight: bold;
   transform: rotate(-45deg);
+}
+
+.demographics-page .back-button-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between diamond and text */
+  text-decoration: none;
+}
+
+.demographics-page .back-text {
+  color: black;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 
